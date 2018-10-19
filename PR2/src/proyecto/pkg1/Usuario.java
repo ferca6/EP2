@@ -36,8 +36,8 @@ public class Usuario {
         return "PROPIETARIO " + idUsuario+"\n"+
                 "Nombre del propietario: " + nombre+ "\n"+
                 "Correo Electrónico: " +email+"\n"+
-                "\n";//+
-                //"   OBJETOS DEL PROPIETARIO " + idUsuario + "\n";
+                "\n"+
+                "   OBJETOS DEL PROPIETARIO " + idUsuario+"\n";//+
     }
     
     public void addObjeto(Objeto obj) {

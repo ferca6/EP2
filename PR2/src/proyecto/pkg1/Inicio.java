@@ -5,11 +5,17 @@
  */
 package proyecto.pkg1;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 /**
@@ -32,7 +38,23 @@ public class Inicio {
         
         Scanner keyboard = new Scanner(System.in);
         int opcion = 0;
-        while(opcion != 7){
+        OutputStream pantalla = new OutputStream() {
+            @Override
+            public void write(int b) throws IOException {
+                System.out.print((char)b);
+            }
+        };
+        PrintStream screen = new PrintStream(pantalla);
+        PrintStream fich = null;
+        
+        try {
+            fich = new PrintStream("Guardar saldos.txt");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        while(opcion != 11){
             opcion = imprimirMenu();
             
             switch(opcion){
@@ -52,7 +74,7 @@ public class Inicio {
                 case 4:
                     System.out.println("Listar todo los objetos: ");
                     //listarObjetos(usuarios,objetos,alquileres);
-                    mostrarUsuarios(usuarios,4);
+                    mostrarUsuarios(usuarios,4,screen);
                     break;
                 case 5:
                     System.out.println("Baja de objeto: ");
@@ -60,16 +82,29 @@ public class Inicio {
                     break;
                 case 6:
                     System.out.println("Mostrar saldos: ");
-                    mostrarUsuarios(usuarios,6);
+                    mostrarUsuarios(usuarios,6,screen);
                     break;
                 case 7:
-                    System.out.println("Salir: ");
-                    System.exit(0);
-                    break;
-                case 8:
                     System.out.println("Modificar importe de un objeto");
                     modificarImporte(keyboard,usuarios);
                     break;
+                case 8:
+                    System.out.println("Guardar Saldos");
+                    mostrarUsuarios(usuarios,6,fich);
+                    break;
+                case 9:
+                    System.out.println("Eliminar Usuario");
+                    //modificarImporte(keyboard,usuarios);
+                    break;
+                case 10:
+                    System.out.println("Listar más asiudos");
+                    //modificarImporte(keyboard,usuarios);
+                    break;
+                case 11:
+                    System.out.println("Salir: ");
+                    System.exit(0);
+                    break;
+                    
             }
             //static ids!!!!!!
             
@@ -88,8 +123,11 @@ public class Inicio {
                            "4 – Listar todos los objetos\n" +
                            "5 – Baja de objeto\n" +
                            "6 – Mostrar saldos\n" +
-                           "7 – Salir\n" +
-                           "8 - Modificar importe de un objeto\n");
+                           "7 - Modificar importe de un objeto\n" +
+                           "8 - Guardar Saldos en fichero\n" +
+                           "9 - Eliminar Usuario\n" +
+                           "10 - Listar mas asiduos\n" +
+                           "11 – Salir\n");
         int opcion = keyboard.nextInt();
         return opcion;
     }
@@ -211,11 +249,11 @@ public class Inicio {
      * @param usuarios el ArrayList con todos los usuarios del sistema
      * @param opt la opcion del menu donde se llama a esta funcion
      */
-    public static void mostrarUsuarios(ArrayList<Usuario> usuarios, int opt) {
+    public static void mostrarUsuarios(ArrayList<Usuario> usuarios, int opt, PrintStream p) {
         float cont = 0;
         for(Usuario u : usuarios){
-            System.out.println(u.toString());
-            cont = cont + mostrarObjetosUsuario(u.getObjetos(),opt);
+            p.println(u.toString());
+            cont = cont + mostrarObjetosUsuario(u.getObjetos(),opt, p);
         }
         if(opt == 6){
             System.out.println("Importe total acumulado para la startup :" + cont +"euros");
@@ -227,13 +265,13 @@ public class Inicio {
      * @param objetos el ArrayList con todos los objetos del sistema
      * @param opt la opcion del menu donde se llama a esta funcion
      */
-    public static float mostrarObjetosUsuario(ArrayList<Objeto> objetos, int opt) {
+    public static float mostrarObjetosUsuario(ArrayList<Objeto> objetos, int opt,PrintStream p) {
         float cont = 0;
         for(Objeto o: objetos){
             if(opt==4){
-                System.out.println(o.toString());
+                p.println(o.toString());
             }
-            cont = cont + mostrarAlquileresObjeto(o.getAlqs(), opt);          
+            cont = cont + mostrarAlquileresObjeto(o.getAlqs(), opt,p);          
         }
         return cont;
     }
@@ -243,10 +281,10 @@ public class Inicio {
      * @param alquileres
      * @param opt la opcion del menu donde se llama a esta funcion
      */
-    public static float mostrarAlquileresObjeto(ArrayList<Alquiler> alquileres, int opt) {
+    public static float mostrarAlquileresObjeto(ArrayList<Alquiler> alquileres, int opt,PrintStream p) {
         float cont = 0;
         for(Alquiler a : alquileres){
-            System.out.println(a.toString());
+            p.println(a.toString());
             cont = cont + a.getImporteStart();
         }
         return cont;

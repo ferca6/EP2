@@ -42,10 +42,13 @@ public class Objeto {
      * @return 
      */
     public String toString(){
-        return "    Código del objeto: " + idObjeto +"\n"+
+        return  "   "+
+                "   Código del objeto: " + idObjeto +"\n"+
                 "   Descripción: " + descripcion +"\n"+
                 "   Fecha de disponibilidad: " +fechaIni+ "-" +fechaFin+ "\n"+
-                "   Coste del préstamo por día: "+coste+ "\n";
+                "   Coste del préstamo por día: "+coste+ "\n" +
+                "   \n" +
+                "       PRESTAMOS DEL OBJETO " + idObjeto + "\n";
     }
     
     public boolean getDisponibilidad() {

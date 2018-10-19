@@ -40,7 +40,7 @@ public class Alquiler {
      */
     @Override
     public String toString(){
-        return "            Nombre del cliente: " + user +"\n"+
+        return  "           Nombre del cliente: " + user +"\n"+
                 "           Fechas del préstamo: " + fechaIni + "-" +fechaFin+ "\n"+
                 "           Importe para el propietario: " +importeProp+ " euros" + "\n"+
                 "           Importe para la startup: "+importeStart+ " euros" + "\n";

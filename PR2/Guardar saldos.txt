@@ -1,0 +1,16 @@
+PROPIETARIO 1
+Nombre del propietario: asdas
+Correo Electrónico: asdad@es.es
+
+   OBJETOS DEL PROPIETARIO 1
+
+           Nombre del cliente: PROPIETARIO 1
+Nombre del propietario: asdas
+Correo Electrónico: asdad@es.es
+
+   OBJETOS DEL PROPIETARIO 1
+
+           Fechas del préstamo: Mon Oct 11 00:00:00 CEST 2010-Tue Oct 12 00:00:00 CEST 2010
+           Importe para el propietario: 15.0 euros
+           Importe para la startup: 1.5 euros
+
