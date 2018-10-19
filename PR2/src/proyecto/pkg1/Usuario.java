@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * Clase que representa los usuarios
  * 
  */
-public class Usuario {
+public class Usuario implements Comparable<Usuario>{
     
     /**
      * Constructor de la clase usuario
@@ -19,13 +19,17 @@ public class Usuario {
      * @param nombre
      * @param email 
      */
-    public Usuario(String nombre, String email) {
+    public Usuario(String nombre, String email,String direccion,String poblacion,String provincia) {
         this.idUsuario = nextID;
         this.nombre = nombre;
         this.email = email;
         objetos = new ArrayList<Objeto>();
         nextID++;
         activo = true;
+        this.direccion = direccion;
+        this.poblacion = poblacion;
+        this.provincia = provincia;
+        totalGastado = 0;
     }
     
     /**
@@ -45,6 +49,10 @@ public class Usuario {
         objetos.add(obj);
     }
     
+    public void addGastado(float gastado){
+        totalGastado = totalGastado + gastado;
+    }
+    
     public ArrayList<Objeto> getObjetos(){
         return objetos;
     }
@@ -53,13 +61,33 @@ public class Usuario {
         activo = false;
     }
     
+    public float getGastado(){
+        return totalGastado;
+    }
+    
+    public boolean getActivo(){
+        return activo;
+    }
+    @Override
+    public int compareTo(Usuario u){
+        if(this.totalGastado < u.getGastado()){
+            return -1;
+        } else if(this.totalGastado > u.getGastado()){
+            return 1;
+        } else{
+            return 0;
+        }
+    }
     private int idUsuario;
     private String nombre;
     private String email;
     private ArrayList <Objeto> objetos;
     private static int nextID = 1;
     private boolean activo;
-    
+    private String direccion;
+    private String poblacion;
+    private String provincia;
+    private float totalGastado;
     
 
     

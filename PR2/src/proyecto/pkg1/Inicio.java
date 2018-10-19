@@ -12,6 +12,8 @@ import java.io.PrintStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -98,7 +100,7 @@ public class Inicio {
                     break;
                 case 10:
                     System.out.println("Listar más asiudos");
-                    //modificarImporte(keyboard,usuarios);
+                    listarAsiduos(usuarios);
                     break;
                 case 11:
                     System.out.println("Salir: ");
@@ -147,7 +149,16 @@ public class Inicio {
             email = keyboard.next();
         }while(!validarEmail(email));
         
-        Usuario user = new Usuario(nombre,email);   
+        System.out.println("Introduzca su Direccion: ");
+        String dir = keyboard.next();
+        
+        System.out.println("Introduzca su poblacion: ");
+        String pobl = keyboard.next();
+        
+        System.out.println("Introduzca su provincia: ");
+        String prov = keyboard.next();
+        
+        Usuario user = new Usuario(nombre,email,dir,pobl,prov);   
         usuarios.add(user);     
     }
     
@@ -221,6 +232,7 @@ public class Inicio {
 
 
                 float importeProp = diferenciaFechas(fechaFin,fechaIni)*obj.getCoste();
+                user.addGastado(importeProp);
                 Alquiler alquiler = new Alquiler(user,obj,fechaIni,fechaFin,importeProp, (float) (importeProp*0.1));
                 obj.addAlq(alquiler);
             }
@@ -340,8 +352,17 @@ public class Inicio {
         }
     }
     
-
-
+    /**
+     * 
+     * @param usuarios 
+     */
+    public static void listarAsiduos(ArrayList<Usuario> usuarios) {
+        ArrayList<Usuario> asiduos = usuarios;
+        Collections.sort(asiduos,Collections.reverseOrder());//ordenar lista
+        for(Usuario u: asiduos){
+            System.out.print(u);
+        }
+    }
 
     
     //FUNCIONES AUXILIARES
@@ -380,6 +401,7 @@ public class Inicio {
     public static Object mostrarLista(Scanner keyboard,ArrayList lista) { 
         Objeto obj;
         Usuario user;
+        Object ob;
         for(Object o : lista){
             
             if(o.getClass().getSimpleName().equals("Objeto")){
@@ -390,6 +412,9 @@ public class Inicio {
                 }
             }else if(o.getClass().getSimpleName().equals("Usuario")){
                 user = (Usuario)o;
+                if(user.getActivo()){
+                    System.out.println(o.toString());
+                }
             }else{
                 System.out.println(o.toString());
             }
@@ -403,9 +428,10 @@ public class Inicio {
            }catch(NumberFormatException e){
                 ok = false;
             }
+           ob = lista.get(id-1);
         }while((id > lista.size() || id <= 0) || (!ok));
         
-        return lista.get(id-1);     
+        return ob;     
     }
     
     /**
@@ -505,7 +531,5 @@ public class Inicio {
         }
         return ok;
     }
-
-    
 
 }
