@@ -23,14 +23,15 @@ public class Alquiler {
      * @param importeProp el importe para el propietario
      * @param importeStart el importe para la start up
      */
-    public Alquiler(int idAlquiler, Usuario user, Objeto obj, Date fechaIni, Date fechaFin, float importeProp, float importeStart) {
-        this.idAlquiler = idAlquiler;
+    public Alquiler(Usuario user, Objeto obj, Date fechaIni, Date fechaFin, float importeProp, float importeStart) {
+        this.idAlquiler = nextID;
         this.user = user;
         this.obj = obj;
         this.fechaIni = fechaIni;
         this.fechaFin = fechaFin;
         this.importeProp = importeProp;
-        this.importeStart = importeStart;        
+        this.importeStart = importeStart;
+        nextID++;
     }
     
     /**
@@ -60,5 +61,6 @@ public class Alquiler {
     private int idAlquiler;
     private float importeProp;
     private float importeStart;
+    private static int nextID = 1;
 
 }

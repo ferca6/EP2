@@ -14,24 +14,21 @@ import java.util.Date;
  */
 public class Objeto {
     
-    public Objeto(int idObjeto, String descripcion, Date fechaIni, Date fechaFin, float coste) {
-        this.idObjeto = idObjeto;
+    public Objeto(String descripcion, Date fechaIni, Date fechaFin, float coste) {
+        this.idObjeto = nextID;
         this.descripcion = descripcion;
         this.fechaIni = fechaIni;
         this.fechaFin = fechaFin;
         this.coste = coste;
         alquileres = new ArrayList<Alquiler>();
         disponible = true;
+        nextID++;
     }
     
     public float getCoste(){
         return coste;
     }
-    
-    public int getSigId() {
-        return alquileres.size()+1;
-    }
-    
+
     public void addAlq(Alquiler alq) {
         alquileres.add(alq);
     }
@@ -67,6 +64,10 @@ public class Objeto {
         return alquileres;
     }
     
+    public void setCoste(float coste) {
+        this.coste = coste;
+    }
+    
     private int idObjeto;
     private String descripcion;
     private Date fechaIni;
@@ -74,7 +75,9 @@ public class Objeto {
     private float coste;    //coste por dia
     private  ArrayList <Alquiler> alquileres;
     private boolean disponible;
+    private static int nextID = 1;
 
+    
     
 
 }

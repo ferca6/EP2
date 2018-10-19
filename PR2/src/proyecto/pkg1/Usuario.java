@@ -19,11 +19,12 @@ public class Usuario {
      * @param nombre
      * @param email 
      */
-    public Usuario(int idUsuario, String nombre, String email) {
-        this.idUsuario = idUsuario;
+    public Usuario(String nombre, String email) {
+        this.idUsuario = nextID;
         this.nombre = nombre;
         this.email = email;
         objetos = new ArrayList<Objeto>();
+        nextID++;
     }
     
     /**
@@ -47,15 +48,11 @@ public class Usuario {
         return objetos;
     }
     
-    public int getSigId() {
-        return objetos.size()+1;
-    }
-    
     private int idUsuario;
     private String nombre;
     private String email;
     private ArrayList <Objeto> objetos;
-
+    private static int nextID = 1;
     
 
     

@@ -5,16 +5,12 @@
  */
 package proyecto.pkg1;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
-import java.util.regex.Matcher; 
 
 /**
  *
@@ -70,8 +66,12 @@ public class Inicio {
                     System.out.println("Salir: ");
                     System.exit(0);
                     break;
-                
+                case 8:
+                    System.out.println("Modificar importe de un objeto");
+                    modificarImporte(keyboard,usuarios);
+                    break;
             }
+            //static ids!!!!!!
             
         }    
     }
@@ -88,7 +88,8 @@ public class Inicio {
                            "4 – Listar todos los objetos\n" +
                            "5 – Baja de objeto\n" +
                            "6 – Mostrar saldos\n" +
-                           "7 – Salir");
+                           "7 – Salir\n" +
+                           "8 - Modificar importe de un objeto\n");
         int opcion = keyboard.nextInt();
         return opcion;
     }
@@ -108,7 +109,7 @@ public class Inicio {
             email = keyboard.next();
         }while(!validarEmail(email));
         
-        Usuario user = new Usuario(usuarios.size()+1,nombre,email);   
+        Usuario user = new Usuario(nombre,email);   
         usuarios.add(user);     
     }
     
@@ -149,7 +150,7 @@ public class Inicio {
                 
             }while(!ok || coste <= 0);
             
-            Objeto obj = new Objeto(user.getSigId(),descripcion,fechaIni,fechaFin,coste);
+            Objeto obj = new Objeto(descripcion,fechaIni,fechaFin,coste);
             user.addObjeto(obj);
         }
     }
@@ -164,7 +165,10 @@ public class Inicio {
         
         if(!estaVacia(usuarios)){
             Usuario user = (Usuario) mostrarLista(keyboard,usuarios);    //usuario que quiere alquilar
-            ArrayList<Objeto> objetos = user.getObjetos();
+            ArrayList<Objeto> objetos = new ArrayList<Objeto>();
+            for(Usuario u: usuarios){
+                objetos.addAll(u.getObjetos());
+            }
             if(!estaVacia(objetos)){
                 Objeto obj = (Objeto) mostrarLista(keyboard,objetos);
                 Date fechaFin,fechaIni;
@@ -175,11 +179,11 @@ public class Inicio {
                     fechaIni = introducirFecha(keyboard,"fecha de inicio");
                     fechaFin = introducirFecha(keyboard,"fecha de fin");
 
-                }while(!comprobarOrdenFechas(fechaFin,fechaIni) || !comprobarIntervalo(fechaIni,fechaFin,obj.getFechaIni(),obj.getFechaFin()));
+                }while(!comprobarOrdenFechas(fechaFin,fechaIni) && !comprobarIntervalo(fechaIni,fechaFin,obj.getFechaIni(),obj.getFechaFin()));
 
 
                 float importeProp = diferenciaFechas(fechaFin,fechaIni)*obj.getCoste();
-                Alquiler alquiler = new Alquiler(obj.getSigId(),user,obj,fechaIni,fechaFin,importeProp, (float) (importeProp*0.1));
+                Alquiler alquiler = new Alquiler(user,obj,fechaIni,fechaFin,importeProp, (float) (importeProp*0.1));
                 obj.addAlq(alquiler);
             }
         }        
@@ -247,6 +251,31 @@ public class Inicio {
         }
         return cont;
     }
+    
+    
+    public static void modificarImporte(Scanner keyboard, ArrayList<Usuario> usuarios) {    //reutilizar?
+        if(!estaVacia(usuarios)){
+            Usuario user = (Usuario) mostrarLista(keyboard,usuarios);
+            ArrayList<Objeto> objetos = user.getObjetos();
+            
+            if(!estaVacia(objetos)){
+                Objeto obj = (Objeto) mostrarLista(keyboard,objetos);
+                boolean ok;
+                float coste = 0;
+                do{
+                    ok = true;
+                    System.out.println("Introduzca el nuevo importe: ");
+                    try{
+                        coste = keyboard.nextFloat();     //comprobar coste > 0
+                    }catch(NumberFormatException e){
+                        ok = false;
+                    }
+                    obj.setCoste(coste);
+                }while(!ok || coste <= 0);
+            }
+        }
+        
+    }
 
 
 
@@ -284,7 +313,7 @@ public class Inicio {
      * @param lista el ArrayList a imprimir
      * @return el objeto del ArrayList que el usuario a seleccionado
      */
-    public static Object mostrarLista(Scanner keyboard,ArrayList lista) { //iguzl
+    public static Object mostrarLista(Scanner keyboard,ArrayList lista) { 
         Objeto obj;        
         for(Object o : lista){
             
@@ -307,7 +336,6 @@ public class Inicio {
            }catch(NumberFormatException e){
                 ok = false;
             }
-          
         }while((id > lista.size() || id <= 0) || (!ok));
         
         return lista.get(id-1);     
@@ -401,8 +429,8 @@ public class Inicio {
     public static boolean comprobarIntervalo(Date fI,Date fF,Date foI,Date foF){
         boolean ok = false;
         
-        if(foI.before(fI) && foF.after(fI)){
-            if(fF.after(foI) && fF.before(foF)){
+        if(foI.before(fI) && fI.before(foF)){
+            if(foI.before(fF) && fF.before(foF) && fI.before(fF)){
                 ok= true;
             }
         } else {
