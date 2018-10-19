@@ -25,6 +25,7 @@ public class Usuario {
         this.email = email;
         objetos = new ArrayList<Objeto>();
         nextID++;
+        activo = true;
     }
     
     /**
@@ -48,11 +49,17 @@ public class Usuario {
         return objetos;
     }
     
+    public void baja() {
+        activo = false;
+    }
+    
     private int idUsuario;
     private String nombre;
     private String email;
     private ArrayList <Objeto> objetos;
     private static int nextID = 1;
+    private boolean activo;
+    
     
 
     

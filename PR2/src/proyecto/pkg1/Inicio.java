@@ -94,7 +94,7 @@ public class Inicio {
                     break;
                 case 9:
                     System.out.println("Eliminar Usuario");
-                    //modificarImporte(keyboard,usuarios);
+                    eliminarUsuario(keyboard,usuarios);
                     break;
                 case 10:
                     System.out.println("Listar más asiudos");
@@ -239,7 +239,7 @@ public class Inicio {
             
             if(!estaVacia(objetos)){
                 Objeto obj = (Objeto) mostrarLista(keyboard,objetos);
-                obj.bajaObjeto();  
+                obj.baja();  
             }
         }
     }
@@ -248,11 +248,13 @@ public class Inicio {
      * Funcion que muestra los usuarios por pantalla
      * @param usuarios el ArrayList con todos los usuarios del sistema
      * @param opt la opcion del menu donde se llama a esta funcion
+     * @param p PrintStream para imprimir en fichero o pantalla
+     * @return coste
      */
     public static void mostrarUsuarios(ArrayList<Usuario> usuarios, int opt, PrintStream p) {
         float cont = 0;
         for(Usuario u : usuarios){
-            p.println(u.toString());
+            p.print(u.toString()+"\n");
             cont = cont + mostrarObjetosUsuario(u.getObjetos(),opt, p);
         }
         if(opt == 6){
@@ -264,12 +266,14 @@ public class Inicio {
      * Funcion que muestra los objetos de un usuario (si es opcion 4)
      * @param objetos el ArrayList con todos los objetos del sistema
      * @param opt la opcion del menu donde se llama a esta funcion
+     * @param p PrintStream para imprimir en fichero o pantalla
+     * @return coste
      */
     public static float mostrarObjetosUsuario(ArrayList<Objeto> objetos, int opt,PrintStream p) {
         float cont = 0;
         for(Objeto o: objetos){
             if(opt==4){
-                p.println(o.toString());
+                p.println(o.toString()+"\n");
             }
             cont = cont + mostrarAlquileresObjeto(o.getAlqs(), opt,p);          
         }
@@ -277,20 +281,26 @@ public class Inicio {
     }
     
     /**
-     * Funcion que muestra los alquileres de cada objeto
+     * Funcion que imprime los alquileres de cada objeto
      * @param alquileres
      * @param opt la opcion del menu donde se llama a esta funcion
-     */
+     * @param p PrintStream para imprimir en fichero o pantalla
+     * @return coste
+     */ 
     public static float mostrarAlquileresObjeto(ArrayList<Alquiler> alquileres, int opt,PrintStream p) {
         float cont = 0;
         for(Alquiler a : alquileres){
-            p.println(a.toString());
+            p.println(a.toString()+"\n");
             cont = cont + a.getImporteStart();
         }
         return cont;
     }
     
-    
+    /**
+     * Opcion 8. Modifica el importe de un objeto
+     * @param keyboard el Scanner para leer datos de teclado
+     * @param usuarios el ArrayList con todos los usuarios del sistema
+     */
     public static void modificarImporte(Scanner keyboard, ArrayList<Usuario> usuarios) {    //reutilizar?
         if(!estaVacia(usuarios)){
             Usuario user = (Usuario) mostrarLista(keyboard,usuarios);
@@ -314,6 +324,22 @@ public class Inicio {
         }
         
     }
+    
+    /**
+     * Opcion 9. Funcion que elimina un usuario
+     * @param keyboard el Scanner para leer datos de teclado
+     * @param usuarios el ArrayList con todos los usuarios del sistema
+     */
+    public static void eliminarUsuario(Scanner keyboard, ArrayList<Usuario> usuarios) {
+        if(!estaVacia(usuarios)){
+            Usuario user = (Usuario) mostrarLista(keyboard,usuarios);
+            user.baja();
+            for(Objeto o: user.getObjetos()){
+                o.baja();
+            }
+        }
+    }
+    
 
 
 
@@ -352,7 +378,8 @@ public class Inicio {
      * @return el objeto del ArrayList que el usuario a seleccionado
      */
     public static Object mostrarLista(Scanner keyboard,ArrayList lista) { 
-        Objeto obj;        
+        Objeto obj;
+        Usuario user;
         for(Object o : lista){
             
             if(o.getClass().getSimpleName().equals("Objeto")){
@@ -361,6 +388,8 @@ public class Inicio {
                 if(obj.getDisponibilidad()){
                     System.out.println(o.toString());
                 }
+            }else if(o.getClass().getSimpleName().equals("Usuario")){
+                user = (Usuario)o;
             }else{
                 System.out.println(o.toString());
             }
@@ -476,5 +505,7 @@ public class Inicio {
         }
         return ok;
     }
+
+    
 
 }

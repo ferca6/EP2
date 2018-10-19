@@ -33,7 +33,7 @@ public class Objeto {
         alquileres.add(alq);
     }
     
-    public void bajaObjeto() {
+    public void baja() {
         disponible = false;
     }
     
@@ -42,8 +42,7 @@ public class Objeto {
      * @return 
      */
     public String toString(){
-        return  "   "+
-                "   Código del objeto: " + idObjeto +"\n"+
+        return  "   Código del objeto: " + idObjeto +"\n"+
                 "   Descripción: " + descripcion +"\n"+
                 "   Fecha de disponibilidad: " +fechaIni+ "-" +fechaFin+ "\n"+
                 "   Coste del préstamo por día: "+coste+ "\n" +
