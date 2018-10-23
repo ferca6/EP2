@@ -353,7 +353,7 @@ public class Inicio {
     }
     
     /**
-     * 
+     * Funcion que lista a los usuarios que mas dinero han gastado en la pagina
      * @param usuarios 
      */
     public static void listarAsiduos(ArrayList<Usuario> usuarios) {
