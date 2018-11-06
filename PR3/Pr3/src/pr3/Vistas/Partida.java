@@ -105,7 +105,7 @@ public class Partida extends javax.swing.JFrame {
         getContentPane().add(acontecimientos);
         acontecimientos.setBounds(21, 271, 324, 25);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("E:\\UV\\Tercero\\EP2\\Practicas\\PR3\\Pr3\\src\\fondo ep2.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondo ep2.png"))); // NOI18N
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 800, 600);
 
