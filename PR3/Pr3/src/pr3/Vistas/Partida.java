@@ -15,6 +15,7 @@ public class Partida extends javax.swing.JFrame {
      * Creates new form Partida
      */
     public Partida() {
+        super("HUMANOS VS ZOMBIES VS CAZAVAMPIROS VS VAMPIROS");
         initComponents();
         
     }
@@ -42,8 +43,9 @@ public class Partida extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1920, 1080));
-        setSize(new java.awt.Dimension(960, 540));
+        setPreferredSize(new java.awt.Dimension(800, 600));
+        setResizable(false);
+        setSize(new java.awt.Dimension(800, 620));
         getContentPane().setLayout(null);
 
         nuevoEntorno.setFont(new java.awt.Font("GodOfWar", 0, 24)); // NOI18N
@@ -58,6 +60,11 @@ public class Partida extends javax.swing.JFrame {
 
         mostrarDetalles.setFont(new java.awt.Font("GodOfWar", 0, 24)); // NOI18N
         mostrarDetalles.setText("Mostrar detalles");
+        mostrarDetalles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mostrarDetallesActionPerformed(evt);
+            }
+        });
         getContentPane().add(mostrarDetalles);
         mostrarDetalles.setBounds(21, 149, 262, 41);
 
@@ -104,6 +111,11 @@ public class Partida extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void mostrarDetallesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarDetallesActionPerformed
+        MostrarDetalles md = new MostrarDetalles();
+        md.setVisible(true);
+    }//GEN-LAST:event_mostrarDetallesActionPerformed
 
     /**
      * @param args the command line arguments
