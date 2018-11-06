@@ -16,8 +16,9 @@ public class Partida extends javax.swing.JFrame {
      */
     public Partida() {
         initComponents();
+        
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -38,90 +39,68 @@ public class Partida extends javax.swing.JFrame {
         eglobal = new javax.swing.JButton();
         salir = new javax.swing.JButton();
         acontecimientos = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1920, 1080));
+        setSize(new java.awt.Dimension(960, 540));
+        getContentPane().setLayout(null);
 
-        nuevoEntorno.setFont(new java.awt.Font("GodOfWar", 0, 18)); // NOI18N
+        nuevoEntorno.setFont(new java.awt.Font("GodOfWar", 0, 24)); // NOI18N
         nuevoEntorno.setText("Crear nuevo entorno");
+        getContentPane().add(nuevoEntorno);
+        nuevoEntorno.setBounds(21, 43, 308, 41);
 
-        pasarDia.setFont(new java.awt.Font("GodOfWar", 0, 18)); // NOI18N
+        pasarDia.setFont(new java.awt.Font("GodOfWar", 0, 24)); // NOI18N
         pasarDia.setText("Transcurrir un dia");
+        getContentPane().add(pasarDia);
+        pasarDia.setBounds(21, 96, 279, 41);
 
-        mostrarDetalles.setFont(new java.awt.Font("GodOfWar", 0, 18)); // NOI18N
+        mostrarDetalles.setFont(new java.awt.Font("GodOfWar", 0, 24)); // NOI18N
         mostrarDetalles.setText("Mostrar detalles");
+        getContentPane().add(mostrarDetalles);
+        mostrarDetalles.setBounds(21, 149, 262, 41);
 
-        avanzar10dias.setFont(new java.awt.Font("GodOfWar", 0, 18)); // NOI18N
+        avanzar10dias.setFont(new java.awt.Font("GodOfWar", 0, 24)); // NOI18N
         avanzar10dias.setText("Avanzar 10 dias");
+        getContentPane().add(avanzar10dias);
+        avanzar10dias.setBounds(21, 202, 237, 41);
 
-        invasion.setFont(new java.awt.Font("GodOfWar", 0, 18)); // NOI18N
+        invasion.setFont(new java.awt.Font("GodOfWar", 0, 24)); // NOI18N
         invasion.setText("Invasion zombie");
+        getContentPane().add(invasion);
+        invasion.setBounds(21, 414, 239, 41);
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        cglobal.setFont(new java.awt.Font("GodOfWar", 0, 18)); // NOI18N
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(374, 350, 410, 232);
+
+        cglobal.setFont(new java.awt.Font("GodOfWar", 0, 24)); // NOI18N
         cglobal.setText(" Calentamiento global");
+        getContentPane().add(cglobal);
+        cglobal.setBounds(21, 308, 330, 41);
 
-        eglobal.setFont(new java.awt.Font("GodOfWar", 0, 18)); // NOI18N
+        eglobal.setFont(new java.awt.Font("GodOfWar", 0, 24)); // NOI18N
         eglobal.setText("Enfriamiento global");
+        getContentPane().add(eglobal);
+        eglobal.setBounds(21, 361, 304, 41);
 
+        salir.setFont(new java.awt.Font("GodOfWar", 1, 24)); // NOI18N
         salir.setText("Salir");
+        getContentPane().add(salir);
+        salir.setBounds(21, 473, 104, 41);
 
+        acontecimientos.setFont(new java.awt.Font("GodOfWar", 1, 24)); // NOI18N
         acontecimientos.setText("Acontecimientos: ");
+        getContentPane().add(acontecimientos);
+        acontecimientos.setBounds(21, 271, 324, 25);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(invasion)
-                    .addComponent(nuevoEntorno)
-                    .addComponent(avanzar10dias)
-                    .addComponent(mostrarDetalles)
-                    .addComponent(cglobal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(eglobal)
-                    .addComponent(pasarDia)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(acontecimientos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(salir)
-                        .addGap(19, 19, 19))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(188, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(nuevoEntorno)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pasarDia)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(mostrarDetalles)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(avanzar10dias)
-                        .addGap(13, 13, 13)
-                        .addComponent(acontecimientos)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cglobal)
-                        .addGap(1, 1, 1)
-                        .addComponent(eglobal))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(salir)
-                    .addComponent(invasion))
-                .addContainerGap())
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon("E:\\UV\\Tercero\\EP2\\Practicas\\PR3\\Pr3\\src\\fondo ep2.png")); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 800, 600);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -167,6 +146,7 @@ public class Partida extends javax.swing.JFrame {
     private javax.swing.JButton cglobal;
     private javax.swing.JButton eglobal;
     private javax.swing.JButton invasion;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton mostrarDetalles;
