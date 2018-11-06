@@ -10,7 +10,22 @@ package pr3;
  * @author godof
  */
 public class Zombie extends Ser{
-    public Zombie(int zgenerados, ){
     
-    }   
+    private int nConvertidos;
+
+    public Zombie(int nConvertidos, int diaNacimiento) {
+        super(diaNacimiento);
+        this.nConvertidos = nConvertidos;
+    }
+
+    public int getnConvertidos() {
+        return nConvertidos;
+    }
+
+    public void setnConvertidos(int nConvertidos) {
+        this.nConvertidos = nConvertidos;
+    }
+    
+    //gedianacimiento
+    //setDiaNacimiento
 }

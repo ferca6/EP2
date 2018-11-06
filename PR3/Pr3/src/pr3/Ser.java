@@ -9,6 +9,20 @@ package pr3;
  *
  * @author godof
  */
-public class Ser {
+public abstract class Ser {
+    
+    protected int diaNacimiento;
+
+    public Ser(int diaNacimiento) {
+        this.diaNacimiento = diaNacimiento;
+    }
+
+    public int getDiaNacimiento() {
+        return diaNacimiento;
+    }
+
+    public void setDiaNacimiento(int diaNacimiento) {
+        this.diaNacimiento = diaNacimiento;
+    }
     
 }

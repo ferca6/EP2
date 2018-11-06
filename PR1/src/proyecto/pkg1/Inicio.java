@@ -175,7 +175,7 @@ public class Inicio {
                     fechaIni = introducirFecha(keyboard,"fecha de inicio");
                     fechaFin = introducirFecha(keyboard,"fecha de fin");
 
-                }while(!comprobarOrdenFechas(fechaFin,fechaIni) || !comprobarIntervalo(fechaIni,fechaFin,obj.getFechaIni(),obj.getFechaFin()));
+                }while(!comprobarOrdenFechas(fechaFin,fechaIni));//|| !comprobarIntervalo(fechaIni,fechaFin,obj.getFechaIni(),obj.getFechaFin()));
 
 
                 float importeProp = diferenciaFechas(fechaFin,fechaIni)*obj.getCoste();

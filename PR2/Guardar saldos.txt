@@ -1,0 +1,45 @@
+PROPIETARIO 2
+Nombre del propietario: juan
+Correo Electrónico: juan@e.es
+
+   OBJETOS DEL PROPIETARIO 2
+
+PROPIETARIO 1
+Nombre del propietario: pepe
+Correo Electrónico: pepe@p.es
+
+   OBJETOS DEL PROPIETARIO 1
+
+           Nombre del cliente: PROPIETARIO 1
+Nombre del propietario: pepe
+Correo Electrónico: pepe@p.es
+
+   OBJETOS DEL PROPIETARIO 1
+
+           Fechas del préstamo: Wed Jan 01 00:00:00 CET 2020-Sun Jan 05 00:00:00 CET 2020
+           Importe para el propietario: 120.0 euros
+           Importe para la startup: 12.0 euros
+
+
+           Nombre del cliente: PROPIETARIO 1
+Nombre del propietario: pepe
+Correo Electrónico: pepe@p.es
+
+   OBJETOS DEL PROPIETARIO 1
+
+           Fechas del préstamo: Thu Oct 01 00:00:00 CEST 2020-Mon Oct 05 00:00:00 CEST 2020
+           Importe para el propietario: 200.0 euros
+           Importe para la startup: 20.0 euros
+
+
+           Nombre del cliente: PROPIETARIO 2
+Nombre del propietario: juan
+Correo Electrónico: juan@e.es
+
+   OBJETOS DEL PROPIETARIO 2
+
+           Fechas del préstamo: Wed Jan 01 00:00:00 CET 2020-Tue May 05 00:00:00 CEST 2020
+           Importe para el propietario: 6200.0 euros
+           Importe para la startup: 620.0 euros
+
+

@@ -9,6 +9,24 @@ package pr3;
  *
  * @author godof
  */
-public class Humano {
+public class Humano extends Ser {
     
+    private float velocidad;
+
+    public Humano(float velocidad, int diaNacimiento) {
+        super(diaNacimiento);
+        this.velocidad = velocidad;
+    }
+
+    public float getVelocidad() {
+        return velocidad;
+    }
+
+    //gedianacimiento
+
+    public void setVelocidad(float velocidad) {
+        this.velocidad = velocidad;
+    }
+
+    //setDiaNacimiento
 }
