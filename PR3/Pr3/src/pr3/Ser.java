@@ -9,8 +9,6 @@ package pr3;
  *
  * @author godof
  */
-public class Zombie extends Ser{
-    public Zombie(int zgenerados, ){
+public class Ser {
     
-    }   
 }
