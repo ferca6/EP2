@@ -41,22 +41,29 @@ public class Partida extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        nuevoEntorno.setFont(new java.awt.Font("GodOfWar", 0, 18)); // NOI18N
         nuevoEntorno.setText("Crear nuevo entorno");
 
+        pasarDia.setFont(new java.awt.Font("GodOfWar", 0, 18)); // NOI18N
         pasarDia.setText("Transcurrir un dia");
 
+        mostrarDetalles.setFont(new java.awt.Font("GodOfWar", 0, 18)); // NOI18N
         mostrarDetalles.setText("Mostrar detalles");
 
+        avanzar10dias.setFont(new java.awt.Font("GodOfWar", 0, 18)); // NOI18N
         avanzar10dias.setText("Avanzar 10 dias");
 
+        invasion.setFont(new java.awt.Font("GodOfWar", 0, 18)); // NOI18N
         invasion.setText("Invasion zombie");
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
+        cglobal.setFont(new java.awt.Font("GodOfWar", 0, 18)); // NOI18N
         cglobal.setText(" Calentamiento global");
 
+        eglobal.setFont(new java.awt.Font("GodOfWar", 0, 18)); // NOI18N
         eglobal.setText("Enfriamiento global");
 
         salir.setText("Salir");
@@ -80,25 +87,21 @@ public class Partida extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(acontecimientos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(salir)
                         .addGap(19, 19, 19))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap(188, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jScrollPane1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(10, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(nuevoEntorno)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(pasarDia)
@@ -111,7 +114,8 @@ public class Partida extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cglobal)
                         .addGap(1, 1, 1)
-                        .addComponent(eglobal)))
+                        .addComponent(eglobal))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(salir)
