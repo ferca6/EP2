@@ -12,12 +12,13 @@ import pr3.Simulacion;
  * @author godof
  */
 public class Partida extends javax.swing.JFrame {
-
+    Simulacion s;
     /**
      * Creates new form Partida
      */
     public Partida() {
         super("HUMANOS VS ZOMBIES VS CAZAVAMPIROS VS VAMPIROS");
+         
         initComponents();
         
     }
@@ -43,6 +44,7 @@ public class Partida extends javax.swing.JFrame {
         salir = new javax.swing.JButton();
         acontecimientos = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImages(null);
@@ -102,11 +104,21 @@ public class Partida extends javax.swing.JFrame {
 
         cglobal.setFont(new java.awt.Font("GodOfWar", 0, 24)); // NOI18N
         cglobal.setText(" Calentamiento global");
+        cglobal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cglobalActionPerformed(evt);
+            }
+        });
         getContentPane().add(cglobal);
         cglobal.setBounds(21, 308, 330, 41);
 
         eglobal.setFont(new java.awt.Font("GodOfWar", 0, 24)); // NOI18N
         eglobal.setText("Enfriamiento global");
+        eglobal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eglobalActionPerformed(evt);
+            }
+        });
         getContentPane().add(eglobal);
         eglobal.setBounds(21, 361, 304, 41);
 
@@ -122,6 +134,10 @@ public class Partida extends javax.swing.JFrame {
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 800, 0);
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondo ep2.png"))); // NOI18N
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(0, 0, 800, 600);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -131,15 +147,24 @@ public class Partida extends javax.swing.JFrame {
     }//GEN-LAST:event_mostrarDetallesActionPerformed
 
     private void nuevoEntornoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoEntornoActionPerformed
-        Simulacion s = new Simulacion();
-        s.crearEntorno();
-        
-        estadisticas.setText(s.getDatos());
+        s = new Simulacion();
+        s.crearEntorno();  
+        estadisticas.setText(s.toString());
     }//GEN-LAST:event_nuevoEntornoActionPerformed
 
     private void avanzar10diasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avanzar10diasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_avanzar10diasActionPerformed
+
+    private void cglobalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cglobalActionPerformed
+        s.cambioGlobal(10);
+        estadisticas.setText(s.toString());
+    }//GEN-LAST:event_cglobalActionPerformed
+
+    private void eglobalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eglobalActionPerformed
+        s.cambioGlobal(-10);
+        estadisticas.setText(s.toString());
+    }//GEN-LAST:event_eglobalActionPerformed
 
     /**
      * @param args the command line arguments
@@ -184,6 +209,7 @@ public class Partida extends javax.swing.JFrame {
     private javax.swing.JTextArea estadisticas;
     private javax.swing.JButton invasion;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton mostrarDetalles;
     private javax.swing.JButton nuevoEntorno;

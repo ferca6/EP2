@@ -24,17 +24,11 @@ public class Simulacion {
     public Simulacion(){
         dia = 0;
     }
-    
-    
-    
-    
-    
-    
-    
-    
+
     public void crearEntorno()
     {
         dia = 0;
+        temperatura = 20;
         humanos.clear();
         vampiros.clear();
         cazavampiros.clear();
@@ -48,14 +42,15 @@ public class Simulacion {
         s= s+ "vampiros hay:"+ vampiros.size()+"\n";
         s= s+"cazavampiros hay:"+ cazavampiros.size()+"\n";
         s= s+"zombies hay:"+ zombies.size()+"\n";
-        
-        System.out.println("Humanos hay:"+ humanos.size());
-        System.out.println("vampiros hay:"+ vampiros.size());
-        System.out.println("cazavampiros hay:"+ cazavampiros.size());
-        System.out.println("zombies hay:"+ zombies.size());
+        s= s+"Temperatura:"+ temperatura+"\n";
     }
     public void cambioGlobal(int t){
         temperatura = temperatura + t;
+    }
+
+    @Override
+    public String toString() {
+        return "Dia: " + dia + "\nTemperatura:" + temperatura + "\nHumanos:" + humanos.size() + "\nVampiros=" + vampiros.size() + "\nCazavampiros=" + cazavampiros.size() + "\nZombies=" + zombies.size();
     }
     
     public void transcurrirDia(int d){

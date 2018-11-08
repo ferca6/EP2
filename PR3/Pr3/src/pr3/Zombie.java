@@ -12,6 +12,7 @@ package pr3;
 public class Zombie extends Ser{
     
     private int nConvertidos;
+    private float probabilidad;
 
     public Zombie(int nConvertidos, int diaNacimiento) {
         super(diaNacimiento);
@@ -25,7 +26,6 @@ public class Zombie extends Ser{
     public void setnConvertidos(int nConvertidos) {
         this.nConvertidos = nConvertidos;
     }
-    
     //gedianacimiento
     //setDiaNacimiento
 }
