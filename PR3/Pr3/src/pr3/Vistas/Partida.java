@@ -45,8 +45,9 @@ public class Partida extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(805, 635));
         setResizable(false);
-        setSize(new java.awt.Dimension(800, 620));
+        setSize(new java.awt.Dimension(800, 600));
         getContentPane().setLayout(null);
 
         nuevoEntorno.setFont(new java.awt.Font("GodOfWar", 0, 24)); // NOI18N
