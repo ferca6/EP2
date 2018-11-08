@@ -42,7 +42,11 @@ public class Simulacion {
         generarHumano(numeroAleatorio(4000,6000));
         generarCazaVampiro(numeroAleatorio(10,15));
         generarVampiro(numeroAleatorio(15,20));
-        generarZombie(numeroAleatorio(20,30));    
+        generarZombie(numeroAleatorio(20,30)); 
+        for(int i = 0; i < humanos.size(); i++){
+            
+            System.out.println("Humanos hay:"+ i);
+        }
     }
     public void cambioGlobal(int t){
         temperatura = temperatura + t;
