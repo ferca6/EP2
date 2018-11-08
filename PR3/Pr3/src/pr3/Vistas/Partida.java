@@ -5,6 +5,8 @@
  */
 package pr3.Vistas;
 
+import pr3.Simulacion;
+
 /**
  *
  * @author godof
@@ -43,13 +45,17 @@ public class Partida extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
         setSize(new java.awt.Dimension(800, 620));
         getContentPane().setLayout(null);
 
         nuevoEntorno.setFont(new java.awt.Font("GodOfWar", 0, 24)); // NOI18N
         nuevoEntorno.setText("Crear nuevo entorno");
+        nuevoEntorno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nuevoEntornoActionPerformed(evt);
+            }
+        });
         getContentPane().add(nuevoEntorno);
         nuevoEntorno.setBounds(21, 43, 308, 41);
 
@@ -70,6 +76,11 @@ public class Partida extends javax.swing.JFrame {
 
         avanzar10dias.setFont(new java.awt.Font("GodOfWar", 0, 24)); // NOI18N
         avanzar10dias.setText("Avanzar 10 dias");
+        avanzar10dias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                avanzar10diasActionPerformed(evt);
+            }
+        });
         getContentPane().add(avanzar10dias);
         avanzar10dias.setBounds(21, 202, 237, 41);
 
@@ -116,6 +127,15 @@ public class Partida extends javax.swing.JFrame {
         MostrarDetalles md = new MostrarDetalles();
         md.setVisible(true);
     }//GEN-LAST:event_mostrarDetallesActionPerformed
+
+    private void nuevoEntornoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoEntornoActionPerformed
+        Simulacion s = new Simulacion();
+        s.crearEntorno();
+    }//GEN-LAST:event_nuevoEntornoActionPerformed
+
+    private void avanzar10diasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avanzar10diasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_avanzar10diasActionPerformed
 
     /**
      * @param args the command line arguments

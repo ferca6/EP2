@@ -11,9 +11,9 @@ package pr3;
  */
 public class Humano extends Ser {
     
-    private float velocidad;
+    private int velocidad;
 
-    public Humano(float velocidad, int diaNacimiento) {
+    public Humano(int velocidad, int diaNacimiento) {
         super(diaNacimiento);
         this.velocidad = velocidad;
     }
@@ -24,7 +24,7 @@ public class Humano extends Ser {
 
     //gedianacimiento
 
-    public void setVelocidad(float velocidad) {
+    public void setVelocidad(int velocidad) {
         this.velocidad = velocidad;
     }
 
