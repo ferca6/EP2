@@ -48,8 +48,9 @@ public class Partida extends javax.swing.JFrame {
         setIconImages(null);
         setMaximumSize(new java.awt.Dimension(800, 600));
         setMinimumSize(new java.awt.Dimension(800, 600));
-        setPreferredSize(new java.awt.Dimension(800, 600));
-        setSize(new java.awt.Dimension(800, 600));
+        setPreferredSize(new java.awt.Dimension(805, 635));
+        setResizable(false);
+        setSize(new java.awt.Dimension(805, 635));
         getContentPane().setLayout(null);
 
         nuevoEntorno.setFont(new java.awt.Font("GodOfWar", 0, 24)); // NOI18N
@@ -119,7 +120,7 @@ public class Partida extends javax.swing.JFrame {
         getContentPane().add(acontecimientos);
         acontecimientos.setBounds(21, 271, 324, 25);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("D:\\Documentos\\estudios\\universidad 3\\EP2\\EP2\\PR3\\Pr3\\src\\fondo ep2.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondo ep2.png"))); // NOI18N
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 800, 600);
 
