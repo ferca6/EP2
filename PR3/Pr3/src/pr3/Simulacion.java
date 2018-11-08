@@ -19,7 +19,7 @@ public class Simulacion {
     private ArrayList<Vampiro> vampiros = new ArrayList<Vampiro>();
     private ArrayList<CazaVampiro> cazavampiros = new ArrayList<CazaVampiro>();
     private ArrayList<Zombie> zombies = new ArrayList<Zombie>();
-    
+    private String s;
     
     public Simulacion(){
         dia = 0;
@@ -43,10 +43,16 @@ public class Simulacion {
         generarCazaVampiro(numeroAleatorio(10,15));
         generarVampiro(numeroAleatorio(15,20));
         generarZombie(numeroAleatorio(20,30)); 
-        for(int i = 0; i < humanos.size(); i++){
-            
-            System.out.println("Humanos hay:"+ i);
-        }
+        
+        s= "Humanos hay:"+ humanos.size()+"\n";
+        s= s+ "vampiros hay:"+ vampiros.size()+"\n";
+        s= s+"cazavampiros hay:"+ cazavampiros.size()+"\n";
+        s= s+"zombies hay:"+ zombies.size()+"\n";
+        
+        System.out.println("Humanos hay:"+ humanos.size());
+        System.out.println("vampiros hay:"+ vampiros.size());
+        System.out.println("cazavampiros hay:"+ cazavampiros.size());
+        System.out.println("zombies hay:"+ zombies.size());
     }
     public void cambioGlobal(int t){
         temperatura = temperatura + t;
@@ -87,5 +93,9 @@ public class Simulacion {
             Zombie z = new Zombie(0,dia);
             zombies.add(z);
         }
+    }
+
+    public String getDatos() {
+        return s;
     }
 }

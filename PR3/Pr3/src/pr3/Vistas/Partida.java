@@ -37,7 +37,7 @@ public class Partida extends javax.swing.JFrame {
         avanzar10dias = new javax.swing.JButton();
         invasion = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        estadisticas = new javax.swing.JTextArea();
         cglobal = new javax.swing.JButton();
         eglobal = new javax.swing.JButton();
         salir = new javax.swing.JButton();
@@ -93,9 +93,9 @@ public class Partida extends javax.swing.JFrame {
         getContentPane().add(invasion);
         invasion.setBounds(21, 414, 239, 41);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        estadisticas.setColumns(20);
+        estadisticas.setRows(5);
+        jScrollPane1.setViewportView(estadisticas);
 
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(374, 350, 410, 232);
@@ -119,10 +119,8 @@ public class Partida extends javax.swing.JFrame {
         acontecimientos.setText("Acontecimientos: ");
         getContentPane().add(acontecimientos);
         acontecimientos.setBounds(21, 271, 324, 25);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondo ep2.png"))); // NOI18N
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 800, 600);
+        jLabel1.setBounds(0, 0, 800, 0);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -135,6 +133,8 @@ public class Partida extends javax.swing.JFrame {
     private void nuevoEntornoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoEntornoActionPerformed
         Simulacion s = new Simulacion();
         s.crearEntorno();
+        
+        estadisticas.setText(s.getDatos());
     }//GEN-LAST:event_nuevoEntornoActionPerformed
 
     private void avanzar10diasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avanzar10diasActionPerformed
@@ -181,10 +181,10 @@ public class Partida extends javax.swing.JFrame {
     private javax.swing.JButton avanzar10dias;
     private javax.swing.JButton cglobal;
     private javax.swing.JButton eglobal;
+    private javax.swing.JTextArea estadisticas;
     private javax.swing.JButton invasion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton mostrarDetalles;
     private javax.swing.JButton nuevoEntorno;
     private javax.swing.JButton pasarDia;
