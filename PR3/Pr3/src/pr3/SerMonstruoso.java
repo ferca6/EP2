@@ -9,11 +9,11 @@ package pr3;
  *
  * @author fer_n
  */
-public class SerMonstruo extends Ser{
+public class SerMonstruoso extends Ser{
     
     private int nConvertidos;
 
-    public SerMonstruo(int diaNacimiento) {
+    public SerMonstruoso(int diaNacimiento) {
         super(diaNacimiento);
         nConvertidos = 0;
     }

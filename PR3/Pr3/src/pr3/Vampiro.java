@@ -9,8 +9,7 @@ package pr3;
  *
  * @author godof
  */
-public class Vampiro extends SerMonstruo{
-    
+public class Vampiro extends SerMonstruoso{
     public Vampiro(int diaNacimiento) {
         super(diaNacimiento);
     }

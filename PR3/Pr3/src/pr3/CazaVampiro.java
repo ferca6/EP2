@@ -9,10 +9,20 @@ package pr3;
  *
  * @author godof
  */
-public class CazaVampiro extends SerHumano{
-    
+public class CazaVampiro extends SerHumanoide{
+    private int asesinatos;
+
     public CazaVampiro(int velocidad, int diaNacimiento) {
         super(velocidad, diaNacimiento);
+        asesinatos = 0;
+    }
+
+    public int getAsesinatos() {
+        return asesinatos;
+    }
+
+    public void addAsesinato() {
+        asesinatos++;
     }
     
     

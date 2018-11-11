@@ -9,7 +9,7 @@ package pr3;
  *
  * @author godof
  */
-public class Zombie extends SerMonstruo{
+public class Zombie extends SerMonstruoso{
     
     
     private float probabilidad;

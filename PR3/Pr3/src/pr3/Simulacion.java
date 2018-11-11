@@ -15,10 +15,10 @@ public class Simulacion {
     
     private int dia;
     private float temperatura;
-    private ArrayList<Humano> humanos = new ArrayList<Humano>();
-    private ArrayList<Vampiro> vampiros = new ArrayList<Vampiro>();
-    private ArrayList<CazaVampiro> cazavampiros = new ArrayList<CazaVampiro>();
-    private ArrayList<Zombie> zombies = new ArrayList<Zombie>();
+    private final ArrayList<SerHumanoide> humanos = new ArrayList<>();
+    private final ArrayList<Vampiro> vampiros = new ArrayList<>();
+    private final ArrayList<CazaVampiro> cazavampiros = new ArrayList<>();
+    private final ArrayList<Zombie> zombies = new ArrayList<>();
     
     public Simulacion(){
     }
@@ -45,8 +45,34 @@ public class Simulacion {
         cambioTemperatura();                                                    //cambio temperatura
     
         //humanos (reproduccion y muerte);
-        //cazavampiros (reproduccion y muerte como los humanos, caza de vampiros);
+        for(SerHumanoide h: humanos){
+            int hijos = h.reproduccion(temperatura);
+            for(int i = 0; i < hijos; i++){
+                humanos.add(new SerHumanoide(h.getVelocidad(),dia));
+            }
+            
+            if(h.muerte()){
+                humanos.remove(h);
+            }
+        }
+        //cazavampiros (reproduccion y muerte como los humanos, caza de vampiros);              //IGUAAAAAAL ---> MODULAR
+        for(CazaVampiro c: cazavampiros){
+            int hijos = c.reproduccion(temperatura);                            
+            for(int i = 0; i < hijos; i++){
+                cazavampiros.add(new CazaVampiro(c.getVelocidad(),dia));
+            }
+            
+            if(c.muerte()){
+                cazavampiros.remove(c);
+            }
+            if(vampiros.size()>0){
+                if(numeroAleatorio(1,3) == 1){
+                    vampiros.remove(numeroAleatorio(0,vampiros.size()));
+                }
+            }
+        }
         //vampiro (probabilidad de hambre, morder a humano y muerte inanicion)
+        
         //zombies (probabilodad de convertir, muerte de zombie)
     }
     
@@ -90,7 +116,7 @@ public class Simulacion {
         switch(ser){
             case 'H':
                 for(int j = 0; j < i; j++){
-                    Humano h = new Humano(numeroAleatorio(60,100),dia);
+                    SerHumanoide h = new SerHumanoide(numeroAleatorio(60,100),dia);
                     humanos.add(h);
                 }
                 break;
