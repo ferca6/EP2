@@ -78,19 +78,15 @@ public class Simulacion {
     public void generarVampiro(int i)
     {
         for(int j = 0; j < i; j++){
-            Vampiro v = new Vampiro(0,dia);
+            Vampiro v = new Vampiro(dia);
             vampiros.add(v);
         }
     }
     public void generarZombie(int i)
     {
         for(int j = 0; j < i; j++){
-            Zombie z = new Zombie(0,dia);
+            Zombie z = new Zombie(dia);
             zombies.add(z);
         }
-    }
-
-    public String getDatos() {
-        return s;
     }
 }

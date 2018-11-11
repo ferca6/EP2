@@ -9,25 +9,12 @@ package pr3;
  *
  * @author godof
  */
-public class CazaVampiro extends Ser{
+public class CazaVampiro extends SerHumano{
     
-    private float velocidad;
-
-    public CazaVampiro(float velocidad, int diaNacimiento) {
-        super(diaNacimiento);
-        this.velocidad = velocidad;
+    public CazaVampiro(int velocidad, int diaNacimiento) {
+        super(velocidad, diaNacimiento);
     }
     
     
-    public float getVelocidad() {
-        return velocidad;
-    }
-    //getDiaNacimiento
-
-    public void setVelocidad(float velocidad) {
-        this.velocidad = velocidad;
-    }
-
-    //setDiaNacimiento
     
 }

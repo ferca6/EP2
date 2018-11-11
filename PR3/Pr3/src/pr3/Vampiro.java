@@ -9,23 +9,11 @@ package pr3;
  *
  * @author godof
  */
-public class Vampiro extends Ser{
+public class Vampiro extends SerMonstruo{
     
-    private int nConvertidos;
-
-    public Vampiro(int nConvertidos, int diaNacimiento) {
+    public Vampiro(int diaNacimiento) {
         super(diaNacimiento);
-        this.nConvertidos = nConvertidos;
-    }
-
-    public int getnConvertidos() {
-        return nConvertidos;
-    }
-
-    public void setnConvertidos(int nConvertidos) {
-        this.nConvertidos = nConvertidos;
     }
     
-    //gedianacimiento
-    //setDiaNacimiento
+    
 }

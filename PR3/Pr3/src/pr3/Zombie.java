@@ -9,23 +9,16 @@ package pr3;
  *
  * @author godof
  */
-public class Zombie extends Ser{
+public class Zombie extends SerMonstruo{
     
-    private int nConvertidos;
+    
     private float probabilidad;
 
-    public Zombie(int nConvertidos, int diaNacimiento) {
-        super(diaNacimiento);
-        this.nConvertidos = nConvertidos;
-    }
-
-    public int getnConvertidos() {
-        return nConvertidos;
-    }
-
-    public void setnConvertidos(int nConvertidos) {
-        this.nConvertidos = nConvertidos;
-    }
+    
     //gedianacimiento
     //setDiaNacimiento
+
+    public Zombie(int diaNacimiento) {
+        super(diaNacimiento);
+    }
 }
