@@ -97,6 +97,11 @@ public class Partida extends javax.swing.JFrame {
 
         invasion.setFont(new java.awt.Font("GodOfWar", 0, 24)); // NOI18N
         invasion.setText("Invasion zombie");
+        invasion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                invasionActionPerformed(evt);
+            }
+        });
         getContentPane().add(invasion);
         invasion.setBounds(21, 414, 239, 41);
 
@@ -187,6 +192,11 @@ public class Partida extends javax.swing.JFrame {
         s.transcurrirDia(1);
         estadisticas.setText(s.toString());
     }//GEN-LAST:event_pasarDiaActionPerformed
+
+    private void invasionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_invasionActionPerformed
+        s.invasionZombie();
+        estadisticas.setText(s.toString());
+    }//GEN-LAST:event_invasionActionPerformed
 
     /**
      * @param args the command line arguments

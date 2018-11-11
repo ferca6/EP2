@@ -6,6 +6,9 @@
 package pr3;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.ListIterator;
  import java.util.Random;
 /**
  *
@@ -19,7 +22,7 @@ public class Simulacion {
     private final ArrayList<Vampiro> vampiros = new ArrayList<>();
     private final ArrayList<CazaVampiro> cazavampiros = new ArrayList<>();
     private final ArrayList<Zombie> zombies = new ArrayList<>();
-    
+    private int probabilidadZombie;
     public Simulacion(){
     }
 
@@ -27,6 +30,7 @@ public class Simulacion {
     {
         dia = 0;
         temperatura = 20;
+        probabilidadZombie = 10;
         humanos.clear();
         vampiros.clear();
         cazavampiros.clear();
@@ -42,49 +46,107 @@ public class Simulacion {
      * Todo lo que pasa en 1 dia
      */
     private void eventosDia(){
-        cambioTemperatura();                                                    //cambio temperatura
-    
-        //humanos (reproduccion y muerte);
-        for(SerHumanoide h: humanos){
-            int hijos = h.reproduccion(temperatura);
-            for(int i = 0; i < hijos; i++){
-                humanos.add(new SerHumanoide(h.getVelocidad(),dia));
-            }
-            
-            if(h.muerte()){
-                humanos.remove(h);
-            }
-        }
-        //cazavampiros (reproduccion y muerte como los humanos, caza de vampiros);              //IGUAAAAAAL ---> MODULAR
-        for(CazaVampiro c: cazavampiros){
-            int hijos = c.reproduccion(temperatura);                            
-            for(int i = 0; i < hijos; i++){
-                cazavampiros.add(new CazaVampiro(c.getVelocidad(),dia));
-            }
-            
-            if(c.muerte()){
-                cazavampiros.remove(c);
-            }
-            if(vampiros.size()>0){
-                if(numeroAleatorio(1,3) == 1){
-                    vampiros.remove(numeroAleatorio(0,vampiros.size()));
-                }
-            }
-        }
-        //vampiro (probabilidad de hambre, morder a humano y muerte inanicion)
-        
-        //zombies (probabilodad de convertir, muerte de zombie)
+        cambioTemperaturaDiaria();                                              //cambio temperatura
+        eventosHumanoides();                                                    //humanos (reproduccion y muerte) cazavampiros(caza);   Modular
+        eventosMonstruosos();
     }
     
     /**
-     * Funcion que permite cambiar la temperatura (Pensado para calentamiento y enfriamiento global)
-     * @param t la temperatura que se le va a sumar a la temperatura actual
+     * Eventos que pasan cada dia protagonizados por los seres humanos
      */
-    public void cambioTemperatura(float t){
-        temperatura = temperatura + t;
+    private void eventosHumanoides() {
+
+        ListIterator it = humanos.listIterator();
+        while(it.hasNext()){
+            SerHumanoide h = (SerHumanoide) it.next();
+            int hijos = h.reproduccion(temperatura);
+            for(int i = 0; i < hijos; i++){
+               //humanos.add(new SerHumanoide(h.getVelocidad(),dia));
+               it.add(new SerHumanoide(h.getVelocidad(),dia));
+            }
+            
+            if(h.muerte()){
+                //humanos.remove(h);
+                it.remove();
+            }
+        }
+        
+        it = cazavampiros.listIterator();
+        while(it.hasNext()){
+            CazaVampiro c = (CazaVampiro) it.next();
+            int hijos = c.reproduccion(temperatura);                            
+            for(int i = 0; i < hijos; i++){
+                //cazavampiros.add(new CazaVampiro(c.getVelocidad(),dia));
+                it.add(new CazaVampiro(c.getVelocidad(),dia));
+            }
+            
+            if(c.muerte()){
+                //cazavampiros.remove(c);
+                it.remove();
+            }
+            if(vampiros.size()>0){
+                if(numeroAleatorio(1,3) == 1){
+                    vampiros.remove(numeroAleatorio(0,vampiros.size()-1));
+                    c.addAsesinato();
+                }
+            }
+        }
+        
+        Collections.sort(humanos,SerHumanoide.comparador);
+        Collections.sort(cazavampiros,SerHumanoide.comparador);
     }
+    
+    /**
+     * Eventos que pasan cada dia protagonizados por los seres monstruosos
+     */
+    private void eventosMonstruosos() {
+        
+        ListIterator it = vampiros.listIterator();
+        while(it.hasNext()){
+            Vampiro v = (Vampiro) it.next();
+            if(v.accion()){                                                     //si el vampiro tiene hambre
+                if(humanos.size() > 0){                                             //si existen humanos
+                    humanos.remove(numeroAleatorio(0,humanos.size()-1));                  //un humano muere o es convertido
+                    if(v.accion()){                                                     //si el humano sobrevive
+                        //vampiros.add(new Vampiro (dia));                                //se añade un nuevo vampiro
+                        it.add(new Vampiro (dia));  
+                        v.addConvertido();      
+                    }
+                }else{                                                              //si no existe humanos
+                    //vampiros.remove(v);                                                 //vampiro muere inanicion
+                    it.remove();
+                }               
+            }
+        }
 
 
+        //zombies (probabilodad de convertir, muerte de zombie)
+        it = zombies.listIterator();
+        while(it.hasNext()){
+            Zombie z = (Zombie) it.next();
+            if(z.convierte(probabilidadZombie)){
+                //eliminar humano mas lento
+                if(numeroAleatorio(1,2) == 1){                                      //elimina humano
+                    if(humanos.size()>0){
+                        humanos.remove(0);
+                    }
+                    
+                }else{                                                              //elimina cazavampiros
+                    if(vampiros.size()>0){
+                        vampiros.remove(0);
+                    }
+                }
+                z.addConvertido();
+                //zombies.add(new Zombie(dia));
+                it.add(new Zombie(dia));
+            }
+            if(z.muerte(dia)){
+                //zombies.remove(z);
+                it.remove();
+            }
+        }
+    }
+    
     /**
      * Funcion que hace transcurrir d dias en el simulador
      * @param d cantidad de dias que deben pasar
@@ -157,7 +219,7 @@ public class Simulacion {
     /**
      * Funcion que calcula la variacion de la temperatura cada dia
      */
-    private void cambioTemperatura() {
+    private void cambioTemperaturaDiaria() {
         int prob = numeroAleatorio(1,100);
         
         if(temperatura>= 22){                                       //Temperatura Mayor o igual a 22 grados
@@ -182,4 +244,21 @@ public class Simulacion {
             }
         }
     }
+
+    /**
+     * Funcion que cambia la probabilidad de convertir humanos a zombies
+     */
+    public void invasionZombie() {
+        probabilidadZombie = 3;
+    }
+    
+    /**
+     * Funcion que permite cambiar la temperatura (Pensado para calentamiento y enfriamiento global)
+     * @param t la temperatura que se le va a sumar a la temperatura actual
+     */
+    public void cambioTemperatura(float t){
+        temperatura = temperatura + t;
+    }
+    
+    
 }

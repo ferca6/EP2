@@ -14,5 +14,17 @@ public class Vampiro extends SerMonstruoso{
         super(diaNacimiento);
     }
     
+    /**
+     * Funcion que determina si el vampiro tiene hambre 
+     * @return true si tiene hambre
+     */
+    public boolean accion(){
+        if(numeroAleatorio(1,2) == 1){                  //num aleatorio entre 1 o 2 inclusive, si 1 hambriento/convierte, si 2 no hambriento/muerte humano
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
     
 }

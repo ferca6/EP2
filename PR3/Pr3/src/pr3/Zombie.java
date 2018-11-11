@@ -10,15 +10,25 @@ package pr3;
  * @author godof
  */
 public class Zombie extends SerMonstruoso{
-    
-    
-    private float probabilidad;
-
-    
-    //gedianacimiento
-    //setDiaNacimiento
+     
 
     public Zombie(int diaNacimiento) {
         super(diaNacimiento);
+    }
+    
+    public boolean convierte(int prob){
+        if(numeroAleatorio(1,prob) == 1){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public boolean muerte(int diaAct){
+        if((diaAct-diaNacimiento)>=8){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

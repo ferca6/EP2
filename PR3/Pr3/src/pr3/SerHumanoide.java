@@ -5,6 +5,8 @@
  */
 package pr3;
 
+import java.util.Comparator;
+
 /**
  *
  * @author fer_n
@@ -72,4 +74,12 @@ public class SerHumanoide extends Ser{
         
         return false;
     }
+    
+    public static Comparator<SerHumanoide> comparador = new Comparator<SerHumanoide>() {
+        @Override
+        public int compare(SerHumanoide h, SerHumanoide h1) {
+            return (h.getVelocidad() - h1.getVelocidad());
+        }
+    };
+
 }
