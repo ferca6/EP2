@@ -67,6 +67,11 @@ public class Partida extends javax.swing.JFrame {
 
         pasarDia.setFont(new java.awt.Font("GodOfWar", 0, 24)); // NOI18N
         pasarDia.setText("Transcurrir un dia");
+        pasarDia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pasarDiaActionPerformed(evt);
+            }
+        });
         getContentPane().add(pasarDia);
         pasarDia.setBounds(21, 96, 279, 41);
 
@@ -124,6 +129,11 @@ public class Partida extends javax.swing.JFrame {
 
         salir.setFont(new java.awt.Font("GodOfWar", 1, 24)); // NOI18N
         salir.setText("Salir");
+        salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salirActionPerformed(evt);
+            }
+        });
         getContentPane().add(salir);
         salir.setBounds(21, 473, 104, 41);
 
@@ -133,8 +143,6 @@ public class Partida extends javax.swing.JFrame {
         acontecimientos.setBounds(21, 271, 324, 25);
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 800, 0);
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondo ep2.png"))); // NOI18N
         getContentPane().add(jLabel2);
         jLabel2.setBounds(0, 0, 800, 600);
 
@@ -154,17 +162,31 @@ public class Partida extends javax.swing.JFrame {
 
     private void avanzar10diasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avanzar10diasActionPerformed
         // TODO add your handling code here:
+        s.transcurrirDia(10);
+        estadisticas.setText(s.toString());
     }//GEN-LAST:event_avanzar10diasActionPerformed
 
     private void cglobalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cglobalActionPerformed
-        s.cambioGlobal(10);
+        s.cambioTemperatura(10);
         estadisticas.setText(s.toString());
     }//GEN-LAST:event_cglobalActionPerformed
 
     private void eglobalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eglobalActionPerformed
-        s.cambioGlobal(-10);
+        s.cambioTemperatura(-10);
         estadisticas.setText(s.toString());
     }//GEN-LAST:event_eglobalActionPerformed
+
+    private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Cerrando");
+        System.exit(0);
+    }//GEN-LAST:event_salirActionPerformed
+
+    private void pasarDiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pasarDiaActionPerformed
+        // TODO add your handling code here:
+        s.transcurrirDia(1);
+        estadisticas.setText(s.toString());
+    }//GEN-LAST:event_pasarDiaActionPerformed
 
     /**
      * @param args the command line arguments
