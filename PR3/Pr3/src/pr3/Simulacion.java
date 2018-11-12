@@ -5,17 +5,11 @@
  */
 package pr3;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.ListIterator;
- import java.util.Random;
 /**
  *
  * @author fer_n
@@ -67,15 +61,15 @@ public class Simulacion implements Serializable{
         while(it.hasNext()){
             SerHumanoide h = (SerHumanoide) it.next();
             int hijos = h.reproduccion(temperatura);
+            if(h.muerte()){
+                //humanos.remove(h);
+               it.remove();
+            }
             for(int i = 0; i < hijos; i++){
                //humanos.add(new SerHumanoide(h.getVelocidad(),dia));
                it.add(new SerHumanoide(h.getVelocidad(),dia));
             }
             
-            if(h.muerte()){
-                //humanos.remove(h);
-                it.remove();
-            }
         }
         
         it = cazavampiros.listIterator();
@@ -132,6 +126,12 @@ public class Simulacion implements Serializable{
         it = zombies.listIterator();
         while(it.hasNext()){
             Zombie z = (Zombie) it.next();
+            
+            if(z.muerte(dia)){
+                //zombies.remove(z);
+                it.remove();
+            }
+            
             if(z.convierte(probabilidadZombie)){
                 //eliminar humano mas lento
                 if(numeroAleatorio(1,2) == 1){                                      //elimina humano
@@ -147,11 +147,9 @@ public class Simulacion implements Serializable{
                 z.addConvertido();
                 //zombies.add(new Zombie(dia));
                 it.add(new Zombie(dia));
+                
             }
-            if(z.muerte(dia)){
-                //zombies.remove(z);
-                it.remove();
-            }
+            
         }
     }
     
