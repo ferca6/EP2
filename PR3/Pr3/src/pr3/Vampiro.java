@@ -25,6 +25,5 @@ public class Vampiro extends SerMonstruoso{
             return false;
         }
     }
-    
-    
+      
 }

@@ -5,6 +5,9 @@
  */
 package pr3.Vistas;
 
+import java.applet.AudioClip;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import pr3.Simulacion;
 
 /**
@@ -13,12 +16,14 @@ import pr3.Simulacion;
  */
 public class Partida extends javax.swing.JFrame {
     Simulacion s;
+    AudioClip audio;
     /**
      * Creates new form Partida
      */
-    public Partida() {
-        super("HUMANOS VS ZOMBIES VS CAZAVAMPIROS VS VAMPIROS");
-         
+    public Partida(){
+        super("HUMANOS VS ZOMBIES VS CAZAVAMPIROS VS VAMPIROS"); 
+        audio = java.applet.Applet.newAudioClip(getClass().getResource("/song.wav"));
+        audio.loop();
         initComponents();
         
     }
@@ -49,6 +54,7 @@ public class Partida extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImages(null);
         setMinimumSize(new java.awt.Dimension(800, 600));
+        setPreferredSize(new java.awt.Dimension(805, 635));
         setResizable(false);
         setSize(new java.awt.Dimension(805, 635));
         getContentPane().setLayout(null);
@@ -61,7 +67,7 @@ public class Partida extends javax.swing.JFrame {
             }
         });
         getContentPane().add(nuevoEntorno);
-        nuevoEntorno.setBounds(21, 43, 250, 48);
+        nuevoEntorno.setBounds(21, 43, 308, 41);
 
         pasarDia.setFont(new java.awt.Font("GodOfWar", 0, 24)); // NOI18N
         pasarDia.setText("Transcurrir un dia");
@@ -71,7 +77,7 @@ public class Partida extends javax.swing.JFrame {
             }
         });
         getContentPane().add(pasarDia);
-        pasarDia.setBounds(21, 96, 220, 48);
+        pasarDia.setBounds(21, 96, 279, 41);
 
         mostrarDetalles.setFont(new java.awt.Font("GodOfWar", 0, 24)); // NOI18N
         mostrarDetalles.setText("Mostrar detalles");
@@ -81,7 +87,7 @@ public class Partida extends javax.swing.JFrame {
             }
         });
         getContentPane().add(mostrarDetalles);
-        mostrarDetalles.setBounds(21, 149, 201, 48);
+        mostrarDetalles.setBounds(21, 149, 262, 41);
 
         avanzar10dias.setFont(new java.awt.Font("GodOfWar", 0, 24)); // NOI18N
         avanzar10dias.setText("Avanzar 10 dias");
@@ -91,7 +97,7 @@ public class Partida extends javax.swing.JFrame {
             }
         });
         getContentPane().add(avanzar10dias);
-        avanzar10dias.setBounds(21, 202, 200, 48);
+        avanzar10dias.setBounds(21, 202, 237, 41);
 
         invasion.setFont(new java.awt.Font("GodOfWar", 0, 24)); // NOI18N
         invasion.setText("Invasion zombie");
@@ -101,9 +107,10 @@ public class Partida extends javax.swing.JFrame {
             }
         });
         getContentPane().add(invasion);
-        invasion.setBounds(21, 414, 202, 48);
+        invasion.setBounds(21, 414, 239, 41);
 
         estadisticas.setColumns(20);
+        estadisticas.setFont(new java.awt.Font("GodOfWar", 0, 24)); // NOI18N
         estadisticas.setRows(5);
         jScrollPane1.setViewportView(estadisticas);
 
@@ -118,7 +125,7 @@ public class Partida extends javax.swing.JFrame {
             }
         });
         getContentPane().add(cglobal);
-        cglobal.setBounds(21, 308, 265, 48);
+        cglobal.setBounds(21, 308, 330, 41);
 
         eglobal.setFont(new java.awt.Font("GodOfWar", 0, 24)); // NOI18N
         eglobal.setText("Enfriamiento global");
@@ -128,7 +135,7 @@ public class Partida extends javax.swing.JFrame {
             }
         });
         getContentPane().add(eglobal);
-        eglobal.setBounds(21, 361, 238, 48);
+        eglobal.setBounds(21, 361, 304, 41);
 
         salir.setFont(new java.awt.Font("GodOfWar", 1, 24)); // NOI18N
         salir.setText("Salir");
@@ -138,14 +145,16 @@ public class Partida extends javax.swing.JFrame {
             }
         });
         getContentPane().add(salir);
-        salir.setBounds(21, 473, 82, 48);
+        salir.setBounds(21, 473, 104, 41);
 
         acontecimientos.setFont(new java.awt.Font("GodOfWar", 1, 24)); // NOI18N
         acontecimientos.setText("Acontecimientos: ");
         getContentPane().add(acontecimientos);
-        acontecimientos.setBounds(21, 271, 324, 32);
+        acontecimientos.setBounds(21, 271, 324, 25);
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 800, 0);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondo ep2.png"))); // NOI18N
         getContentPane().add(jLabel2);
         jLabel2.setBounds(0, 0, 800, 600);
 
@@ -153,7 +162,7 @@ public class Partida extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mostrarDetallesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarDetallesActionPerformed
-        MostrarDetalles md = new MostrarDetalles();
+        MostrarDetalles md = new MostrarDetalles(s.mostrarDetalles());
         md.setVisible(true);
     }//GEN-LAST:event_mostrarDetallesActionPerformed
 
@@ -161,6 +170,8 @@ public class Partida extends javax.swing.JFrame {
         s = new Simulacion();
         s.crearEntorno();  
         estadisticas.setText(s.toString());
+        
+
     }//GEN-LAST:event_nuevoEntornoActionPerformed
 
     private void avanzar10diasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avanzar10diasActionPerformed

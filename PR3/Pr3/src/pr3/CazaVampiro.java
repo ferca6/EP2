@@ -24,6 +24,11 @@ public class CazaVampiro extends SerHumanoide{
     public void addAsesinato() {
         asesinatos++;
     }
+
+    @Override
+    public String toString() {
+        return "CazaVampiro: velocidad = " + velocidad + ", Asesinatos = " + asesinatos + ", Dia de nacimineto = " + diaNacimiento + "\n";
+    }
     
     
     

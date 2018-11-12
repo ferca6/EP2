@@ -31,4 +31,5 @@ public class Zombie extends SerMonstruoso{
             return false;
         }
     }
+    
 }

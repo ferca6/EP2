@@ -12,7 +12,7 @@ import java.util.Comparator;
  * @author fer_n
  */
 public class SerHumanoide extends Ser{
-    private int velocidad;
+    protected int velocidad;
 
     public SerHumanoide(int velocidad, int diaNacimiento) {
         super(diaNacimiento);
@@ -81,5 +81,10 @@ public class SerHumanoide extends Ser{
             return (h.getVelocidad() - h1.getVelocidad());
         }
     };
+
+    @Override
+    public String toString() {
+        return "Humano: velocidad = " + velocidad + "Dia de nacimiento = " + diaNacimiento + "\n";
+    }
 
 }

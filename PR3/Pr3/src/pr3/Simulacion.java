@@ -158,7 +158,6 @@ public class Simulacion {
             eventosDia();
         }
     }
-    
     /**
      * Función que genera un numero aleatorio entre un minimo y un maximo
      * @param min el minimo numero que puede salir
@@ -214,7 +213,7 @@ public class Simulacion {
      */
     @Override
     public String toString() {
-        return "Dia: " + dia + "\nTemperatura:" + temperatura + "\nHumanos:" + humanos.size() + "\nVampiros=" + vampiros.size() + "\nCazavampiros=" + cazavampiros.size() + "\nZombies=" + zombies.size();
+        return "Dia: " + dia + "\nTemperatura = " + temperatura + "\nHumanos = " + humanos.size() + "\nVampiros = " + vampiros.size() + "\nCazavampiros = " + cazavampiros.size() + "\nZombies = " + zombies.size();
     }
     
     /**
@@ -259,6 +258,28 @@ public class Simulacion {
      */
     public void cambioTemperatura(float t){
         temperatura = temperatura + t;
+    }
+    
+    public String mostrarDetalles(){
+        String s = "";
+        s = s + "HUMANOS:\n------------\n";
+        for(SerHumanoide h: humanos){
+            s = s + h.toString();
+        }
+        s = s + "\nNumero de humanos = " + humanos.size() + "\nCAZA VAMPIROS:\n------------------------\n";
+        for(CazaVampiro cv: cazavampiros){
+            s = s + cv.toString();
+        }
+        s = s + "\nNumero de CazaVampiros = " + cazavampiros.size() + "\nVAMPIROS:\n----------------\n";
+        for(Vampiro v: vampiros){
+            s = s + v.toString();
+        }
+        s = s + "\nNumero de vampiros = " + vampiros.size() + "\nZOMBIES:\n-------------\n";
+        for(Zombie z: zombies){
+            s = s + z.toString();
+        }     
+        s = s +  "\nNumero de zombies = " + zombies.size();
+        return s;
     }
     
     

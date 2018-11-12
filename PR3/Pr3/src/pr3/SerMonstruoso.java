@@ -25,4 +25,11 @@ public class SerMonstruoso extends Ser{
     public void addConvertido() {
         nConvertidos++;
     }    
+
+    @Override
+    public String toString() {
+        return "SerMonstruoso: " + " Numero de convertidos = " + nConvertidos + "\n";
+    }
+    
+    
 }
