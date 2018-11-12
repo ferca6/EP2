@@ -85,7 +85,8 @@ public class Simulacion {
                 it.remove();
             }
             if(vampiros.size()>0){
-                if(numeroAleatorio(1,3) == 1){
+                int pro = numeroAleatorio(1,3);
+                if( pro == 1){
                     vampiros.remove(numeroAleatorio(0,vampiros.size()-1));
                     c.addAsesinato();
                 }
@@ -132,8 +133,8 @@ public class Simulacion {
                     }
                     
                 }else{                                                              //elimina cazavampiros
-                    if(vampiros.size()>0){
-                        vampiros.remove(0);
+                    if(cazavampiros.size()>0){
+                        cazavampiros.remove(0);
                     }
                 }
                 z.addConvertido();
