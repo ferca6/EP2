@@ -5,13 +5,14 @@
  */
 package pr3;
 
+import java.io.Serializable;
 import java.util.Random;
 
 /**
  *
  * @author godof
  */
-public abstract class Ser {
+public abstract class Ser implements Serializable{
     
     protected int diaNacimiento;
 
@@ -34,7 +35,8 @@ public abstract class Ser {
      * @return el numero aleatorio generado
      */
     public int numeroAleatorio(int min, int max){
-        Random r1 = new Random(System.currentTimeMillis());
-        return (r1.nextInt(max-min+1)+min);
+        //Random r1 = new Random(System.currentTimeMillis());
+        max = max + 1;
+        return ((int) (Math.random() * (max - min) + min));
     }
 }

@@ -9,22 +9,30 @@ import java.applet.AudioClip;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import pr3.Simulacion;
+import pr3.gestorDatos;
 
 /**
  *
  * @author godof
  */
 public class Partida extends javax.swing.JFrame {
+    
+    gestorDatos gd;
     Simulacion s;
-    AudioClip audio;
+    
+    //AudioClip audio;
     /**
      * Creates new form Partida
      */
     public Partida(){
         super("HUMANOS VS ZOMBIES VS CAZAVAMPIROS VS VAMPIROS"); 
-        audio = java.applet.Applet.newAudioClip(getClass().getResource("/song.wav"));
-        audio.loop();
+       // audio = java.applet.Applet.newAudioClip(getClass().getResource("/song.wav"));
+        //audio.loop();
+        
         initComponents();
+        gd = new gestorDatos();
+        s = gd.cargarDatos();
+        estadisticas.setText(s.toString());
         
     }
     
@@ -66,7 +74,7 @@ public class Partida extends javax.swing.JFrame {
             }
         });
         getContentPane().add(nuevoEntorno);
-        nuevoEntorno.setBounds(21, 43, 250, 48);
+        nuevoEntorno.setBounds(21, 43, 308, 41);
 
         pasarDia.setFont(new java.awt.Font("GodOfWar", 0, 24)); // NOI18N
         pasarDia.setText("Transcurrir un dia");
@@ -76,7 +84,7 @@ public class Partida extends javax.swing.JFrame {
             }
         });
         getContentPane().add(pasarDia);
-        pasarDia.setBounds(21, 96, 220, 48);
+        pasarDia.setBounds(21, 96, 279, 41);
 
         mostrarDetalles.setFont(new java.awt.Font("GodOfWar", 0, 24)); // NOI18N
         mostrarDetalles.setText("Mostrar detalles");
@@ -86,7 +94,7 @@ public class Partida extends javax.swing.JFrame {
             }
         });
         getContentPane().add(mostrarDetalles);
-        mostrarDetalles.setBounds(21, 149, 201, 48);
+        mostrarDetalles.setBounds(21, 149, 262, 41);
 
         avanzar10dias.setFont(new java.awt.Font("GodOfWar", 0, 24)); // NOI18N
         avanzar10dias.setText("Avanzar 10 dias");
@@ -96,7 +104,7 @@ public class Partida extends javax.swing.JFrame {
             }
         });
         getContentPane().add(avanzar10dias);
-        avanzar10dias.setBounds(21, 202, 200, 48);
+        avanzar10dias.setBounds(21, 202, 237, 41);
 
         invasion.setFont(new java.awt.Font("GodOfWar", 0, 24)); // NOI18N
         invasion.setText("Invasion zombie");
@@ -106,7 +114,7 @@ public class Partida extends javax.swing.JFrame {
             }
         });
         getContentPane().add(invasion);
-        invasion.setBounds(21, 414, 202, 48);
+        invasion.setBounds(21, 414, 239, 41);
 
         estadisticas.setColumns(20);
         estadisticas.setFont(new java.awt.Font("GodOfWar", 0, 24)); // NOI18N
@@ -114,7 +122,7 @@ public class Partida extends javax.swing.JFrame {
         jScrollPane1.setViewportView(estadisticas);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(374, 350, 410, 232);
+        jScrollPane1.setBounds(370, 340, 410, 232);
 
         cglobal.setFont(new java.awt.Font("GodOfWar", 0, 24)); // NOI18N
         cglobal.setText(" Calentamiento global");
@@ -124,7 +132,7 @@ public class Partida extends javax.swing.JFrame {
             }
         });
         getContentPane().add(cglobal);
-        cglobal.setBounds(21, 308, 265, 48);
+        cglobal.setBounds(21, 308, 330, 41);
 
         eglobal.setFont(new java.awt.Font("GodOfWar", 0, 24)); // NOI18N
         eglobal.setText("Enfriamiento global");
@@ -134,7 +142,7 @@ public class Partida extends javax.swing.JFrame {
             }
         });
         getContentPane().add(eglobal);
-        eglobal.setBounds(21, 361, 238, 48);
+        eglobal.setBounds(21, 361, 304, 41);
 
         salir.setFont(new java.awt.Font("GodOfWar", 1, 24)); // NOI18N
         salir.setText("Salir");
@@ -144,12 +152,12 @@ public class Partida extends javax.swing.JFrame {
             }
         });
         getContentPane().add(salir);
-        salir.setBounds(21, 473, 82, 48);
+        salir.setBounds(21, 473, 104, 41);
 
         acontecimientos.setFont(new java.awt.Font("GodOfWar", 1, 24)); // NOI18N
         acontecimientos.setText("Acontecimientos: ");
         getContentPane().add(acontecimientos);
-        acontecimientos.setBounds(21, 271, 324, 32);
+        acontecimientos.setBounds(21, 271, 324, 25);
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 800, 0);
         getContentPane().add(jLabel2);
@@ -190,6 +198,7 @@ public class Partida extends javax.swing.JFrame {
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
         // TODO add your handling code here:
         System.out.println("Cerrando");
+        gd.guardarDatos(s);
         System.exit(0);
     }//GEN-LAST:event_salirActionPerformed
 

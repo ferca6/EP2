@@ -5,6 +5,12 @@
  */
 package pr3;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -14,7 +20,7 @@ import java.util.ListIterator;
  *
  * @author fer_n
  */
-public class Simulacion {
+public class Simulacion implements Serializable{
     
     private int dia;
     private float temperatura;
@@ -24,6 +30,7 @@ public class Simulacion {
     private final ArrayList<Zombie> zombies = new ArrayList<>();
     private int probabilidadZombie;
     public Simulacion(){
+        
     }
 
     public void crearEntorno()
@@ -153,8 +160,8 @@ public class Simulacion {
      * @param d cantidad de dias que deben pasar
      */
     public void transcurrirDia(int d){
-        dia = dia + d;
         for(int i = 0; i < d; i++){
+            dia++;
             eventosDia();
         }
     }
@@ -165,8 +172,9 @@ public class Simulacion {
      * @return el numero aleatorio generado
      */
     public int numeroAleatorio(int min, int max){
-        Random r1 = new Random(System.currentTimeMillis());
-        return (r1.nextInt(max-min+1)+min);
+        //Random r1 = new Random(System.currentTimeMillis());
+        max = max + 1;
+        return ((int) (Math.random() * (max - min) + min));
     }
     
     /**
@@ -281,6 +289,5 @@ public class Simulacion {
         s = s +  "\nNumero de zombies = " + zombies.size();
         return s;
     }
-    
-    
+
 }
