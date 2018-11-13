@@ -20,14 +20,14 @@ public class Partida extends javax.swing.JFrame {
     gestorDatos gd;
     Simulacion s;
     
-    //AudioClip audio;
+    AudioClip audio;
     /**
      * Creates new form Partida
      */
     public Partida(){
         super("HUMANOS VS ZOMBIES VS CAZAVAMPIROS VS VAMPIROS"); 
-       // audio = java.applet.Applet.newAudioClip(getClass().getResource("/song.wav"));
-        //audio.loop();
+        audio = java.applet.Applet.newAudioClip(getClass().getResource("/song.wav"));
+        audio.loop();
         
         initComponents();
         gd = new gestorDatos();
@@ -62,6 +62,7 @@ public class Partida extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImages(null);
         setMinimumSize(new java.awt.Dimension(800, 600));
+        setPreferredSize(new java.awt.Dimension(805, 635));
         setResizable(false);
         setSize(new java.awt.Dimension(805, 635));
         getContentPane().setLayout(null);
@@ -160,6 +161,8 @@ public class Partida extends javax.swing.JFrame {
         acontecimientos.setBounds(21, 271, 324, 25);
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 800, 0);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondo ep2.png"))); // NOI18N
         getContentPane().add(jLabel2);
         jLabel2.setBounds(0, 0, 800, 600);
 

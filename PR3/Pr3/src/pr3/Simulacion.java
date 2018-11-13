@@ -75,16 +75,16 @@ public class Simulacion implements Serializable{
         it = cazavampiros.listIterator();
         while(it.hasNext()){
             CazaVampiro c = (CazaVampiro) it.next();
-            int hijos = c.reproduccion(temperatura);                            
+            int hijos = c.reproduccion(temperatura); 
+            if(c.muerte()){
+                //cazavampiros.remove(c);
+                it.remove();
+            }
             for(int i = 0; i < hijos; i++){
                 //cazavampiros.add(new CazaVampiro(c.getVelocidad(),dia));
                 it.add(new CazaVampiro(c.getVelocidad(),dia));
             }
             
-            if(c.muerte()){
-                //cazavampiros.remove(c);
-                it.remove();
-            }
             if(vampiros.size()>0){
                 int pro = numeroAleatorio(1,3);
                 if( pro == 1){
