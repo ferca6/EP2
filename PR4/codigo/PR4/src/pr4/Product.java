@@ -1,4 +1,4 @@
-package dominio;
+package pr4;
 
 /**
  * An example product for use in the example shopping cart.

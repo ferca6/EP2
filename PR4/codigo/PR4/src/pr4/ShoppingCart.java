@@ -1,4 +1,4 @@
-package dominio;
+package pr4;
 
 import java.io.IOException;
 import java.io.Writer;

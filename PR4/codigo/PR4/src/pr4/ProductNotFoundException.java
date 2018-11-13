@@ -1,4 +1,4 @@
-package dominio;
+package pr4;
 /**
  * Exception thrown when a product is not found in a shopping cart.
  * @author Mike Clark
