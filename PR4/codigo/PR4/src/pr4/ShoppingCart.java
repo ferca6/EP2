@@ -89,4 +89,12 @@ public class ShoppingCart {
     	writer.flush();
     	writer.close();
     }
+    
+    public boolean findProduct(String s){
+        for(Product p: _items){
+            if(p.getTitle().equals(s))
+                return true;
+        }
+        return false;
+    }
 }
