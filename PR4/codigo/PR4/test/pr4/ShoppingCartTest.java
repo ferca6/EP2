@@ -20,7 +20,8 @@ import static org.junit.Assert.*;
 public class ShoppingCartTest {
     
     public ShoppingCartTest() {
-        
+        ShoppingCart instance = new ShoppingCart();
+        assertEquals(true,instance.isEmpty());        
     }
     
     @BeforeClass
@@ -89,8 +90,14 @@ public class ShoppingCartTest {
         int expResult = 0;
         int result = (int)instance.getItemCount();
         assertEquals(expResult, result);
+        instance.addItem(new Product("test1", 0.50));
+        instance.addItem(new Product("test2", 1.50));
+        expResult = 2;
+        result = (int)instance.getItemCount();
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
+
     }
 
     /**
@@ -98,11 +105,16 @@ public class ShoppingCartTest {
      */
     @Test
     public void testEmpty() {
-       /* System.out.println("empty");
+       System.out.println("empty");
         ShoppingCart instance = new ShoppingCart();
         instance.empty();
+        assertEquals(true,instance.isEmpty());  
+        instance.addItem(new Product("test1", 0.50));
+        instance.addItem(new Product("test2", 1.50));
+        instance.empty();
+        assertEquals(true,instance.isEmpty());  
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");*/
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -110,13 +122,15 @@ public class ShoppingCartTest {
      */
     @Test
     public void testIsEmpty() {
-        /*System.out.println("isEmpty");
+        System.out.println("isEmpty");
         ShoppingCart instance = new ShoppingCart();
-        boolean expResult = false;
-        boolean result = instance.isEmpty();
-        assertEquals(expResult, result);
+        assertEquals(true, instance.isEmpty());
+        instance.addItem(new Product("test1", 0.50));
+        instance.addItem(new Product("test2", 1.50));
+        instance.empty();
+        assertEquals(true,instance.isEmpty()); 
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");*/
+        //fail("The test case is a prototype.");*/
     }
 
     /**
@@ -137,14 +151,13 @@ public class ShoppingCartTest {
      */
     @Test
     public void testFindProduct() {
-        /*System.out.println("findProduct");
-        String s = "";
+        System.out.println("findProduct");
         ShoppingCart instance = new ShoppingCart();
-        boolean expResult = false;
-        boolean result = instance.findProduct(s);
-        assertEquals(expResult, result);
+        assertEquals(false, instance.findProduct("aaaa"));
+        instance.addItem(new Product("test1", 0.50));
+        assertEquals(true, instance.findProduct("test1"));
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");*/
+       // fail("The test case is a prototype.");*/
     }
     
     @Test
@@ -168,6 +181,7 @@ public class ShoppingCartTest {
         fail("The test case is a prototype.");*/
     }
     
+    @Test
     public void testRemoveItemCarroVacio() throws Exception{
         /*System.out.println("removeItem");
         Product p =  new Product("Nuevo", 0);
