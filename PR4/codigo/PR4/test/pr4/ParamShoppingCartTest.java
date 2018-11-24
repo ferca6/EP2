@@ -5,43 +5,38 @@
  */
 package pr4;
 
-import java.io.Writer;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
 
 /**
  *
- * @author godof
+ * @author fer_n
  */
-public class ShoppingCartTest {
+@RunWith(value=Parameterized.class)
+public class ParamShoppingCartTest {
     
-    public ShoppingCartTest() {
-          
+    private double precio1, precio2;
+    @Parameters
+    public static Iterable<Object[]> getInfo(){
+        return Arrays.asList(new Object[][] {
+            {1.5,2.5},{5.0,2.0},{1.9,2.8},{7.4,7.9}
+        });
     }
     
-    @BeforeClass
-    public static void setUpClass() {
+    public ParamShoppingCartTest(double precio1, double precio2) {
+        this.precio1 = precio1;
+        this.precio2 = precio2;
     }
     
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-              
-    }
-    
-    @After
-    public void tearDown() {
-    }
-
     /**
      * Test of getBalance method, of class ShoppingCart.
      * EJ 6
@@ -52,10 +47,10 @@ public class ShoppingCartTest {
         ShoppingCart instance = new ShoppingCart();
         double result = instance.getBalance();
         assertEquals(0.0, result,0.0);
-        instance.addItem(new Product("test1", 4.50));
-        instance.addItem(new Product("test2", 1.50));
+        instance.addItem(new Product("test1", precio1));
+        instance.addItem(new Product("test2", precio2));
         result = instance.getBalance();
-        assertEquals(6.0, result,0.0);
+        assertEquals(precio1+precio2, result,0.0);
         //fail("The test case is a prototype.");
     }
 
@@ -72,7 +67,7 @@ public class ShoppingCartTest {
         instance.addItem(p);
         assertEquals(1, instance.getItemCount());
         instance.empty();
-        p =new Product("test1", 4.50);
+        p =new Product("test1", precio1);
         instance.addItem(p);
         instance.addItem(p);
         assertEquals(2, instance.getItemCount());
@@ -80,52 +75,7 @@ public class ShoppingCartTest {
         //fail("The test case is a prototype.");*/
     }
 
-    /**
-     * Test of removeItem method, of class ShoppingCart.
-     * ej 9
-     * @throws java.lang.Exception
-     */
-    @Test
-    public void testRemoveItem() throws Exception {
-        System.out.println("removeItem");
-        ShoppingCart instance = new ShoppingCart();
-        try{
-            instance.removeItem(null);
-            fail("Debe saltar excepcion");
-        }catch(Exception e){
-            //funciona correctamente
-        }
-        assertEquals(0, instance.getItemCount());
-
-        Product p =  new Product("Nuevo", 0);
-        instance.addItem(p);
-        try{
-            instance.removeItem(p);
-        }catch(Exception e){
-            fail("error, no deberia saltar excepcion");
-        }
-        assertEquals(0, instance.getItemCount());
-        
-        instance.addItem(new Product("test1",2.5));
-        p = new Product("test2",3.0);
-        try{
-            instance.removeItem(p);
-            fail("Debe saltar excepcion");
-            
-        }catch(Exception e){
-            //funciona correctamente
-        }
-        assertEquals(1, instance.getItemCount());
-        
-         instance.addItem(new Product("test3",6.0));
-        try{
-            instance.removeItem(new Product("test3",6.0));
-            
-        }catch(Exception e){
-            fail("error, no deberia saltar excepcion!");
-        }
-        assertEquals(1, instance.getItemCount());
-    }
+    
 
     /**
      * Test of getItemCount method, of class ShoppingCart.
@@ -137,13 +87,13 @@ public class ShoppingCartTest {
         ShoppingCart instance = new ShoppingCart();
         assertEquals(0, instance.getItemCount());
         
-        instance.addItem(new Product("test1", 0.50));
-        instance.addItem(new Product("test2", 1.50));
+        instance.addItem(new Product("test1", precio1));
+        instance.addItem(new Product("test2", precio2));
         
         assertEquals(2, instance.getItemCount());
         
         try {
-            instance.removeItem(new Product("test2", 1.50));
+            instance.removeItem(new Product("test2", precio2));
         } catch (ProductNotFoundException ex) {
             Logger.getLogger(ShoppingCartTest.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -161,8 +111,8 @@ public class ShoppingCartTest {
         instance.empty();
         assertEquals(true,instance.isEmpty());
         assertEquals(0,instance.getItemCount());
-        instance.addItem(new Product("test1", 0.50));
-        instance.addItem(new Product("test2", 1.50));
+        instance.addItem(new Product("test1", precio1));
+        instance.addItem(new Product("test2", precio2));
         instance.empty();
         assertEquals(true,instance.isEmpty());  
         assertEquals(0,instance.getItemCount());
@@ -178,8 +128,8 @@ public class ShoppingCartTest {
         ShoppingCart instance = new ShoppingCart();
         assertEquals(true, instance.isEmpty());
         assertEquals(0,instance.getItemCount());
-        instance.addItem(new Product("test1", 0.50));
-        instance.addItem(new Product("test2", 1.50));
+        instance.addItem(new Product("test1", precio1));
+        instance.addItem(new Product("test2", precio2));
         instance.empty();
         assertEquals(true,instance.isEmpty()); 
         assertEquals(0,instance.getItemCount());
@@ -187,14 +137,6 @@ public class ShoppingCartTest {
         //fail("The test case is a prototype.");*/
     }
 
-    /**
-     * @throws java.lang.Exception
-     * Test of imprimeFactura method, of class ShoppingCart.
-     */
-    @Test
-    public void testImprimeFactura() throws Exception {
-        
-    }
 
     /**
      * Test of findProduct method, of class ShoppingCart.
@@ -205,7 +147,7 @@ public class ShoppingCartTest {
         System.out.println("findProduct");
         ShoppingCart instance = new ShoppingCart();
         assertEquals(false, instance.findProduct("aaaa"));
-        Product p = new Product("test1", 0.50);
+        Product p = new Product("test1", precio1);
         instance.addItem(p);
         assertEquals(true, instance.findProduct(p.getTitle()));
         try {
@@ -225,9 +167,9 @@ public class ShoppingCartTest {
     public void testAddItemFindProduct(){
         ShoppingCart instance = new ShoppingCart();
         assertFalse(instance.findProduct(""));
-        instance.addItem(new Product("Nuevo", 0));
+        instance.addItem(new Product("Nuevo", precio1));
         assertTrue(instance.findProduct("Nuevo"));
-        instance.addItem(new Product("", 2.0));
+        instance.addItem(new Product("", precio2));
         assertTrue(instance.findProduct(""));
         // TODO review the generated test code and remove the default call to fail.
         //*/
@@ -240,7 +182,7 @@ public class ShoppingCartTest {
     @Test
     public void testRemoveItem2()throws Exception{
        System.out.println("removeItem");
-        Product p =  new Product("Nuevo", 0);
+        Product p =  new Product("Nuevo", precio1);
         ShoppingCart instance = new ShoppingCart();
         instance.addItem(p);
         assertTrue(instance.findProduct(p.getTitle()));
@@ -255,7 +197,7 @@ public class ShoppingCartTest {
     @Test
     public void testRemoveItemCarroVacio() throws Exception{
         System.out.println("removeItem");
-        Product p =  new Product("Nuevo", 0);
+        Product p =  new Product("Nuevo", precio1);
         ShoppingCart instance = new ShoppingCart();
         assertTrue(instance.isEmpty());
         assertTrue(!instance.findProduct(p.getTitle()));
@@ -278,7 +220,5 @@ public class ShoppingCartTest {
         assertEquals(0.0,instance.getBalance(),0.0);
         assertEquals(0,instance.getItemCount());
     }
-    
-        
-        
+
 }
