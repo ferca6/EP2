@@ -34,7 +34,7 @@ public class Product {
 	 * @return Price.
 	 */
 	public double getPrice() {
-<span class="nc" id="L37">		return _price;</span>
+<span class="fc" id="L37">		return _price;</span>
 	}
 
 	/**
@@ -44,9 +44,9 @@ public class Product {
 	 */
 	public boolean equals(Object o) {
 	
-<span class="nc bnc" id="L47" title="All 2 branches missed.">		if (o instanceof Product) {</span>
-<span class="nc" id="L48">			Product p = (Product)o;</span>
-<span class="nc" id="L49">			return p.getTitle().equals(_title);</span>
+<span class="pc bpc" id="L47" title="1 of 2 branches missed.">		if (o instanceof Product) {</span>
+<span class="fc" id="L48">			Product p = (Product)o;</span>
+<span class="fc" id="L49">			return p.getTitle().equals(_title);</span>
 		}
 
 <span class="nc" id="L52">		return false;</span>
