@@ -1,0 +1,24 @@
+1.-
+	javax.servlet.http.HttpSession sesion = request.getSession(true);	
+	Integer AccesosViejo = (Integer) sesion.getAttribute("Accesos");
+        if (AccesosViejo != null) {
+        AccesosInt = new Integer(AccesosViejo.intValue() + 1); }
+        }
+	out.println("<TR><TD>Numero de accesos previos");
+        out.println("<TD>" + (Integer) sesion.getAttribute("Accesos"));
+
+2.-
+	Ahora se muestra el Login = javier y password = jj
+	String Login = request.getParameter("login");
+        sesion.setAttribute("Login", Login);
+        out.println("<TD>" + Login);
+        out.println("<TR><TD>Password");
+        String Password = request.getParameter("password");
+        sesion.setAttribute("Password", Password);
+        out.println("<TD>" + Password);
+
+3.-
+	La diferencia entre los métodos get y post radica en la forma de enviar los datos a la página
+	cuando se pulsa el botón “Enviar”.
+	Mientras que el método GET envía los datos usando la URL, 
+	el método POST los envía de forma que no podemos verlos (en un segundo plano u "ocultos" al usuario).
