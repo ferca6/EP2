@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page session="false" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,6 +13,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+    <center>Inicio del Juego:<a href="inicio.html">Ir al enlace</a></center>
+        
     </body>
 </html>

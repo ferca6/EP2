@@ -55,103 +55,132 @@ public class Juego extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        javax.servlet.http.HttpSession sesion = request.getSession(true);
+        javax.servlet.http.HttpSession sesion = null;
+        sesion = request.getSession(true);
+        PrintWriter out = response.getWriter();
         if(sesion.isNew()){
-            
-            Random rand = new Random(System.currentTimeMillis());
-            int numeroSecreto = rand.nextInt(100)+1;
-            System.out.println(numeroSecreto);
-            String nombre = request.getParameter("nombre");
-            System.out.println(nombre);
-            
-            try (PrintWriter out = response.getWriter()) {
-                /* TODO output your page here. You may use following sample code. */
+                Random rand = new Random(System.currentTimeMillis());
+                int numeroSecreto = rand.nextInt(100)+1;
+                int intentos = 1;
+                System.out.println(numeroSecreto);
+                String nombre = request.getParameter("nombre");
+                System.out.println(nombre);
+                
+                sesion.setAttribute("intentos", intentos);
+                sesion.setAttribute("nombre", nombre);
+                sesion.setAttribute("nS",numeroSecreto);
+                
                 out.println("<html>");
                 out.println("<head>");
-                out.println("<h1>Numero secreto</h1>");            
+                out.println("<center>");
+                out.println("<h1>Numero secreto</h1>"); 
+                out.println("</center>");
                 out.println("</head>");
-                out.println("<body>");
+                out.println("<body BGCOLOR=\"#FDF5E6\">");
                 out.println("<div>");
                 out.println("<form id=\"form1\" name=\"form1\" method=\"post\" action=\"Juego\">");
-                out.println("<h1>Instrucciones de juego</h1>");
+                out.println("<center>");
+                
+                out.println("<h3>Instrucciones de juego</h3>");
+                
                 out.println("<br>");
-                out.println("<h1>Adivina el numero secreto</h1>");
-                out.println("<h1>Introduce el numero y la aplicacion te devolvera si te vas por arriba o por abajo</h1>");
-                out.println("Numero:<input align=\"right\" type=\"text\" name=\"numero\">");
+                out.println("<p>Adivina el numero secreto"
+                       +"Introduce el numero y la aplicacion te devolvera si te vas por arriba o por abajo"+ "</p>");
+                //out.println("Numero:<input align=\"right\" type=\"text\" name=\"numero\">");
+                out.println("<select name=\"numero\">");
+                for(int i = 1; i<101; i++){
+                    out.println("<option value=\""+i+"\">"+i+"</option>");
+                }
+                out.println("</select>");                
                 out.println("<input type=\"submit\" name=\"Submit\" value=\"Inicio de juego\" />");  
+                
                 out.println("<br>");
+                out.println("</center>");
                 out.println("</form>");
                 out.println("</div>");
                 out.println("</body>");
                 out.println("</html>");
-            }
-        }else{
-            try (PrintWriter out = response.getWriter()) {
-                String numero = request.getParameter("numero");
-                System.out.println(numero);
-                int num = 0;
+            }else{
+                String nombre = (String) sesion.getAttribute("nombre");
+                int numProbado = 0;
+                boolean fallo = false;
+                boolean acierto = false;
                 String pista = "";
                 try{
-                    num = Integer.parseInt(numero);
+                    numProbado = Integer.parseInt(request.getParameter("numero"));
                     
                 }catch(Exception e){
-                    System.out.println("lo has hecho como mal");
+                    fallo = true;
+                    pista = "No ha introducido un numero o este esta no esta entre 1 y 100";
                 }
-                if(num == numeroSecreto){
-                    System.out.println("has ganado");
-                    out.println("<h1 align=\"center\">Felicidades "+nombre+"</h1>");
-                    out.println("Volver a jugar:<a href=\"inicio.html\">Ir al enlace</a>");
-                }else if(num < numeroSecreto){
-                    pista = "Prueba con un numero mayor";
+                
+                int intentos = (int) sesion.getAttribute("intentos");
+                
+                int numeroSecreto = (int) sesion.getAttribute("nS");
+                
+                if(!fallo){
+                    if(numProbado < numeroSecreto){
+                        intentos++;
+                        pista = "prueba con un numero mayor"; 
+                    }else if(numProbado > numeroSecreto){
+                        intentos++;
+                        pista = "prueba con un numero menor";                    
+                    }else if(numProbado == numeroSecreto){
+                        pista = "has acertado!";
+                        acierto = true;
+                    }
+                    out.println("<html>");
+                    out.println("<head>");
+                    out.println("<center>");
+                    out.println("<h1>Numero secreto</h1>");   
+                    out.println("</center>");
+                    out.println("</head>");
+                    out.println("<body BGCOLOR=\"#FDF5E6\">");
+                    out.println("<div>");
+                    if(!acierto){
+                        out.println("<form id=\"form1\" name=\"form1\" method=\"post\" action=\"Juego\">");
+                        out.println("<center>");
+                        out.println("<p>Introduce el numero</p>");
+                        //out.println("Numero:<input align=\"right\" type=\"text\" name=\"numero\">");
+                        out.println("<select name=\"numero\">");
+                        for(int i = 1; i<101; i++){
+                            out.println("<option value=\""+i+"\">"+i+"</option>");
+                        }
+                        out.println("</select>");  
+                        out.println("<input type=\"submit\" name=\"Submit\" value=\"Inicio de juego\" />");  
+                        out.println("<br>");
+                        out.println("<p><b>PISTA: </b>"+pista+"</p>");
+                        out.println("</center>");
+                        out.println("</form>");
+                    }else{
+                        System.out.println("has ganado");
+                        out.println("<center>");
+                        out.println("<h3 align=\"center\">Felicidades "+nombre+"</h3>");
+                        out.println("<p align=\"center\">Numero de intentos"+intentos+"</p>");
+                        out.println("Volver a jugar:<a href=\"inicio.html\">Ir al enlace</a>");
+                        out.println("</center>");
+                    }
                 }else{
-                    pista = "Prueba con un numero menor";
+                    out.println("<center>");
+                    out.println("<p align=\"center\">Error, "+pista+"</p>");
+                    out.println("Volver a jugar:<a href=\"inicio.html\">Ir al enlace</a>");
+                    out.println("</center>");
                 }
-                out.println("<html>");
-                out.println("<head>");
-                out.println("<h1>Numero secreto</h1>");            
-                out.println("</head>");
-                out.println("<body>");
-                out.println("<div>");
-                out.println("<form id=\"form1\" name=\"form1\" method=\"post\" action=\"Juego\">");
-                out.println("<h1>Introduce el numero</h1>");
-                out.println("Numero:<input align=\"right\" type=\"text\" name=\"numero\">");
-                out.println("<input type=\"submit\" name=\"Submit\" value=\"Inicio de juego\" />");  
-                out.println("<br>");
-                out.println("<h1>"+pista+"</h1>");
-                out.println("</form>");
+                
                 out.println("</div>");
                 out.println("</body>");
                 out.println("</html>");
                 
-                /*
-                while(true){
-                        out.println("<html>");
-                        out.println("<head>");
-                        out.println("<h1>Numero secreto</h1>");            
-                        out.println("</head>");
-                        out.println("<body>");
-                        out.println("<h1>Juego</h1>");
-                        out.println("<input align=\"right\" type=\"text\" name=\"numero\">");
-                        numero = (int) request.getAttribute("numero");
-                        System.out.println(numero);
-                        if(numero == numeroSecreto){
-                        System.out.println("asaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-                        }
-                        out.println("<input type=\"submit\" name=\"Submit\" value=\"Inicio de juego\" />");           
-                        out.println("</body>");
-                        out.println("</html>");
-                    }
-                */
-                    
-                    
-                    
-                    
-                /* TODO output your page here. You may use following sample code. */
+                sesion.setAttribute("intentos",intentos);
+                sesion.setAttribute("nombre", nombre);
+                sesion.setAttribute("nS",numeroSecreto);
                 
+                if(acierto || fallo){
+                    sesion.invalidate();
+                }
             }
-        }
     }
-
+            
     /**
      * Returns a short description of the servlet.
      *
