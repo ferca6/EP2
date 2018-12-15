@@ -87,6 +87,7 @@ public class Juego extends HttpServlet {
                 out.println("<p>Adivina el numero secreto"
                        +"Introduce el numero y la aplicacion te devolvera si te vas por arriba o por abajo"+ "</p>");
                 //out.println("Numero:<input align=\"right\" type=\"text\" name=\"numero\">");
+                out.println("<label for=\"numero\">Introduzca un numero</label>");
                 out.println("<select name=\"numero\">");
                 for(int i = 1; i<101; i++){
                     out.println("<option value=\""+i+"\">"+i+"</option>");
@@ -140,7 +141,7 @@ public class Juego extends HttpServlet {
                     if(!acierto){
                         out.println("<form id=\"form1\" name=\"form1\" method=\"post\" action=\"Juego\">");
                         out.println("<center>");
-                        out.println("<p>Introduce el numero</p>");
+                        out.println("<label for=\"numero\">Introduzca un numero</label>");
                         //out.println("Numero:<input align=\"right\" type=\"text\" name=\"numero\">");
                         out.println("<select name=\"numero\">");
                         for(int i = 1; i<101; i++){

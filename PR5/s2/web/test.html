@@ -9,20 +9,61 @@ and open the template in the editor.
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
     </head>
     <body BGCOLOR="#FDF5E6">
         <div>
             <form id="form1" name="form1" method="post" action="Personalidad">
                 <center>
-                    
-                    <h4>Introduzca su nombre</h4> 
-                    Nombre:<input type="text" name="nombre">
+                    <h1>Test de personalidad</h1>
+                    <label for="nombre">Introduzca un nombre</label>
+
+                    <input type="text" name="nombre">
                     
                     <p>Fíjese bien, tómese su tiempo y escoja el dibujo que le resulte más llamativo.<br>
                         Pulse en la imagen escogida y podremos diagnosticar su personalidad</p>
-                    <img src="\images\i9.png">
-                    <img src="i9.png">
-                    <input type="submit" name="Submit" value="Realizar test" />
+                    
+                    
+                    
+                    <div style="margin-left: 37.5%; margin-right: 35%">
+                        <div>
+                            <p style="float: left; font-size: 9pt; text-align: center; margin-right: 1%; margin-bottom: 0.5em;"><img src="i1.png" style="width: 100%">Imagen 1</p>
+                            <p style="float: left; font-size: 9pt; text-align: center; margin-right: 1%; margin-bottom: 0.5em;"><img src="i2.png" style="width: 100%">Imagen 2</p>
+                            <p style="float: left; font-size: 9pt; text-align: center; margin-right: 1%; margin-bottom: 0.5em;"><img src="i3.png" style="width: 100%">Imagen 3</p>
+                            </div>
+                      
+                        <div> 
+                            <p style="float: left; font-size: 9pt; text-align: center; margin-right: 1%; margin-bottom: 0.5em;"><img src="i4.png" style="width: 100%">Imagen 4</p>
+                            <p style="float: left; font-size: 9pt; text-align: center; margin-right: 1%; margin-bottom: 0.5em;"><img src="i5.png" style="width: 100%">Imagen 5</p>
+                            <p style="float: left; font-size: 9pt; text-align: center; margin-right: 1%; margin-bottom: 0.5em;"><img src="i6.png" style="width: 100%">Imagen 6</p>
+                            
+                        </div>
+                        
+                        <div> 
+                           <p style="float: left; font-size: 9pt; text-align: center; margin-right: 1%; margin-bottom: 0.5em;"><img src="i7.png" style="width: 100%">Imagen 7</p>
+                            <p style="float: left; font-size: 9pt; text-align: center; margin-right: 1%; margin-bottom: 0.5em;"><img src="i8.png" style="width: 100%">Imagen 8</p>
+                            <p style="float: left; font-size: 9pt; text-align: center; margin-right: 1%; margin-bottom: 0.5em;"><img src="i9.png" style="width: 100%">Imagen 9</p>
+                        </div>
+                    </div>
+            
+                    <div style="margin-left: 37.5%; margin-right: 35%">
+                        <select name="imagen">
+                            <option selected value="0">Escoja su imagen</option>
+                            <option value="1">Imagen 1</option>
+                            <option value="1">Imagen 1</option>
+                            <option value="2">Imagen 2</option>
+                            <option value="3">Imagen 3</option>
+                            <option value="4">Imagen 4</option>
+                            <option value="5">Imagen 5</option>
+                            <option value="6">Imagen 6</option>
+                            <option value="7">Imagen 7</option>
+                            <option value="8">Imagen 8</option>
+                            <option value="9">Imagen 9</option>
+                        </select>
+                        <input type="submit" name="Submit" value="Realizar test" />
+                    </div>
+                   
+                    
                     <br>
                 </center>
             </form>
