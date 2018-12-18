@@ -17,7 +17,7 @@
                 <%
                     int npartidos = Integer.parseInt(request.getParameter("partidos"));
                     System.out.println(npartidos);
-                    
+                    request.getSession().setAttribute("npartidos", npartidos);
                     
                     if(npartidos == 0){
                         %>
@@ -32,13 +32,13 @@
                             %>
                             <h3>Partido <%= i %>:</h3>
                                 <label for="nombre">Introduzca su nombre </label>
-                                <input type="text" name="nombre">
+                                <input type="text" name="nombre<%=i%>">
                                 <br>
                                 <label for="votos">Introduzca los votos </label>
-                                <input type="text" name="votos">
+                                <input type="text" name="votos<%=i%>">
                                 <br>
                                 <label for="color">Introduzca el color </label>
-                                <input type="color" name="color" >
+                                <input type="color" name="color<%=i%>" >
                                 <br>
                             <%
                         }
