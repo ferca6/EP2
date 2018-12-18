@@ -1,3 +1,7 @@
+Fernando Casabán y Jaime Álvarez
+
+El proyecto pr5 se trata de la introduccion, los ejercicios a realizar son s1 y s2
+
 1.-
 	javax.servlet.http.HttpSession sesion = request.getSession(true);	
 	Integer AccesosViejo = (Integer) sesion.getAttribute("Accesos");
